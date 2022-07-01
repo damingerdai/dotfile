@@ -36,10 +36,12 @@ end
 packer.startup(
     {
         function(use)
-
-
             -- 这里是安装插件的位置 TODO:-------->
             use("wbthomason/packer.nvim")
+            -- Git
+            use {
+              'lewis6991/gitsigns.nvim',
+            }
             use("ful1e5/onedark.nvim")
             use(
               {
@@ -88,12 +90,11 @@ packer.startup(
             -- go 语法工具
             use("fatih/vim-go")
             -- Git
-            use {
-                  'lewis6991/gitsigns.nvim',
-                  config = function()
-                      require('gitsigns').setup()
-                  end
-            }
+            -- [[
+            use({'lewis6991/gitsigns.nvim',
+                requires = {"nvim-lua/plenary.nvim"}
+            })
+            --]]
 
             if paccker_bootstrap then
                 packer.sync()
