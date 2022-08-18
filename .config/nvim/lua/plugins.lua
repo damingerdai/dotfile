@@ -39,9 +39,9 @@ packer.startup(
             -- 这里是安装插件的位置 TODO:-------->
             use("wbthomason/packer.nvim")
             -- Git
-            use {
-              'lewis6991/gitsigns.nvim',
-            }
+            --use {
+            -- 'lewis6991/gitsigns.nvim',
+            -- }
             use("ful1e5/onedark.nvim")
             use(
               {
@@ -56,6 +56,10 @@ packer.startup(
                     requires = {"kyazdani42/nvim-web-devicons", "moll/vim-bbye"}
                 }
             )
+
+            -- dashboard
+            -- use("glepnir/dashboard-nvim")
+            use("glepnir/dashboard-nvim")
 
             --------------------- LSP --------------------
             use({"williamboman/nvim-lsp-installer"})
@@ -105,7 +109,7 @@ packer.startup(
             max_jobs = 16,
             -- 自定义源
             git = {
-                default_url_format = "https://mirror.ghproxy.com/https://github.com/%s"
+                default_url_format = "https://ghproxy.com/https://github.com/%s"
             }
             -- display = {
             -- 使用浮动窗口显示

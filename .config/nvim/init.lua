@@ -8,6 +8,9 @@ require("colorscheme")
 -- 插件配置
 require("plugin-config.nvim-tree")
 
+-- dashboard
+-- require("plugin-config.dashboard")
+
 -- Git
 require("plugin-config.gitsigns-config")
 
