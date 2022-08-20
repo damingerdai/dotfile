@@ -1,5 +1,7 @@
 -- 基础配置
 require("basic")
+-- 高亮
+require('highlights')
 -- Packer插件管理
 require("plugins")
 
@@ -20,3 +22,10 @@ require("plugin-config.gitsigns-config")
 require("lsp.setup")
 --require("lsp.cmp")
 --require("lsp.ui")
+
+
+local has = function(x)
+  return vim.fm.has(x) == 1
+end
+local is_mac = has "macunix"
+local is_win = has "win32"
