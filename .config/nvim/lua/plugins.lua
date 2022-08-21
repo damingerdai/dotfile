@@ -49,7 +49,10 @@ packer.startup(
                   requires = "kyazdani42/nvim-web-devicons"
               }
             )
-             -- bufferline
+
+            -- status line
+            use("hoob3rt/lualine.nvim")
+            -- bufferline
             use(
                 {
                     "akinsho/bufferline.nvim",
