@@ -4,13 +4,8 @@ require("basic")
 require('highlights')
 -- Packer插件管理
 require("plugins")
-
 -- 主题设置
 require("colorscheme")
-
--- dashboard
--- require("plugin-config.dashboard")
-
 -- 内置LSP
 require("lsp.setup")
 --require("lsp.cmp")
