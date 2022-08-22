@@ -10,8 +10,6 @@ require("colorscheme")
 
 -- dashboard
 -- require("plugin-config.dashboard")
--- Git
-require("plugin-config.gitsigns-config")
 
 -- 内置LSP
 require("lsp.setup")

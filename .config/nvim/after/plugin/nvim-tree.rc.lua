@@ -31,7 +31,7 @@ nvim_tree.setup({
      -- 隐藏 .文件 和 node_modules 文件夹
     filters = {
         dotfiles = false,
-        custom = {".git"}
+        custom = {"^.git$"}
     },
     disable_netrw = true,
     hijack_netrw = true,
