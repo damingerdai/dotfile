@@ -61,15 +61,13 @@ packer.startup(
             )
 
             -- dashboard
-            -- use("glepnir/dashboard-nvim")
             use("glepnir/dashboard-nvim")
 
             --------------------- LSP --------------------
             use({"williamboman/nvim-lsp-installer"})
             -- lsp 加载进度ui
             use("j-hui/fidget.nvim")
-            -- use("arkav/lualine-lsp-progress")
-            -- use({ "williamboman/nvim-lsp-installer", commit = "36b44679f7cc73968dbb3b09246798a19f7c14e0" })
+            use("arkav/lualine-lsp-progress")
             -- Lspconfig
             use({"neovim/nvim-lspconfig"})
             -- 补全引擎
@@ -77,6 +75,9 @@ packer.startup(
             -- Snippet 引擎
             use("hrsh7th/vim-vsnip")
             -- 补全源
+            -- UI 增强
+            use("tami5/lspsaga.nvim")
+            use("onsails/lspkind-nvim")
             use("hrsh7th/cmp-vsnip")
             use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
             use("hrsh7th/cmp-buffer") -- { name = 'buffer' },

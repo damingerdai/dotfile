@@ -8,8 +8,8 @@ require("plugins")
 require("colorscheme")
 -- 内置LSP
 require("lsp.setup")
---require("lsp.cmp")
---require("lsp.ui")
+require("lsp.cmp")
+require("lsp.ui")
 
 
 local has = function(x)
