@@ -104,6 +104,10 @@ packer.startup(
             })
             --]]
 
+            -- treesitter (新增) 代码高亮
+            use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+
             if paccker_bootstrap then
                 packer.sync()
             end
