@@ -59,6 +59,7 @@ packer.startup(
                     requires = {"kyazdani42/nvim-web-devicons", "moll/vim-bbye"}
                 }
             )
+            use("kyazdani42/nvim-web-devicons")
 
             -- dashboard
             use("glepnir/dashboard-nvim")
@@ -106,6 +107,9 @@ packer.startup(
 
             -- treesitter (新增) 代码高亮
             use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+            -- 切换多个终端
+            use("akinsho/toggleterm.nvim")
 
 
             if paccker_bootstrap then
