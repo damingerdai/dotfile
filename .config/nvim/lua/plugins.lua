@@ -66,6 +66,9 @@ packer.startup(
 
             --------------------- LSP --------------------
             use({"williamboman/nvim-lsp-installer"})
+            -- rust-analyzer and CodeLLDB
+            use("williamboman/mason.nvim")
+            use("williamboman/mason-lspconfig.nvim")
             -- lsp 加载进度ui
             use("j-hui/fidget.nvim")
             use("arkav/lualine-lsp-progress")
@@ -110,7 +113,6 @@ packer.startup(
 
             -- 切换多个终端
             use("akinsho/toggleterm.nvim")
-
 
             if paccker_bootstrap then
                 packer.sync()
