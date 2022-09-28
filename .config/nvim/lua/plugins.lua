@@ -101,6 +101,9 @@ packer.startup(
             use("simrat39/rust-tools.nvim")
             -- go 语法工具
             use("fatih/vim-go")
+            -- prettier
+            use('jose-elias-alvarez/null-ls.nvim')
+            use('MunifTanjim/prettier.nvim')
             -- Git
             -- [[
             use({'lewis6991/gitsigns.nvim',

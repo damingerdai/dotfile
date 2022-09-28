@@ -99,3 +99,4 @@ M.toggleG = function()
 end
 
 require("keybindings").mapToggleTerm(M)
+
