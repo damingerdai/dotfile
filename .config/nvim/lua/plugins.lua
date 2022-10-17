@@ -104,6 +104,8 @@ packer.startup(
             -- prettier
             use('jose-elias-alvarez/null-ls.nvim')
             use('MunifTanjim/prettier.nvim')
+            -- eslint
+            use('MunifTanjim/eslint.nvim')
             -- Git
             -- [[
             use({'lewis6991/gitsigns.nvim',
