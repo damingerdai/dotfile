@@ -33,6 +33,7 @@ nvim_tree.setup({
         dotfiles = false,
         custom = {"^.git$"}
     },
+    open_on_setup = true,
     disable_netrw = true,
     hijack_netrw = true,
     ignore_ft_on_setup = {"dashboard"},
