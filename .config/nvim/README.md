@@ -1,5 +1,12 @@
 # daming nvim config
 
+## setup 
+
+```shell
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+
 ## refrence
 
 1. [nvim 打造一个适合自己的开发环境](https://learnku.com/articles/68258?order_by=vote_count&)
