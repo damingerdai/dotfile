@@ -1,20 +1,20 @@
 --https://github.com/MunifTanjim/prettier.nvim
-local lspConfigStatus, lspconfig = pcall(require, "lspconfig")
-if not lspConfigStatus then 
-  vim.notify("没有找到lspconfig");
-end
+-- local lspConfigStatus, lspconfig = pcall(require, "lspconfig")
+-- if not lspConfigStatus then 
+--   vim.notify("没有找到lspconfig");
+-- end
 local status, null_ls = pcall(require, "null-ls")
 if not status then
   vim.notify("没有找到null-ls")
 end
 
 
-lspconfig.tsserver.setup({
-    on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
-    end,
-})
+-- lspconfig.tsserver.setup({
+--     on_attach = function(client, bufnr)
+--         client.resolved_capabilities.document_formatting = false
+--         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
+--     end,
+-- })
 
 
 null_ls.setup({
@@ -44,4 +44,10 @@ null_ls.setup({
   }
 })
 
-lspconfig["null-ls"].setup({})
+vim.api.nvim_create_user_command(
+  'DisableLspFormatting',
+  function()
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
+  end,
+  { nargs = 0 }
+)
