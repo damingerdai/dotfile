@@ -2,9 +2,17 @@
 
 ## setup 
 
+install packer.nvim
+
 ```shell
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+
+instal nerod font
+
+```shell
+brew tap homebrew/cask-fonts && brew install --cask font-jetbrains-mono-nerd-font
 ```
 
 ## refrence
