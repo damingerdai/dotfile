@@ -19,7 +19,7 @@ end
 
 null_ls.setup({
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
+    -- client.resolved_capabilities.document_formatting = false
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
     if client.server_capabilities.documentFormattingProvider then
       vim.cmd("nnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.formatting()<CR>")
