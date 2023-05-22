@@ -42,7 +42,13 @@ packer.startup(
             --use {
             -- 'lewis6991/gitsigns.nvim',
             -- }
-            use("ful1e5/onedark.nvim")
+            -- 旧主题
+            --use("ful1e5/onedark.nvim")
+            -- 新主题
+            use {
+                 'svrana/neosolarized.nvim',
+                 requires = { 'tjdevries/colorbuddy.nvim' }
+             }
             use(
               {
                   "kyazdani42/nvim-tree.lua",
