@@ -18,10 +18,10 @@ end
 
 
 null_ls.setup({
-  on_attach = function(client, bufnr)
-    if client.resolved_capabilities.document_formatting then
-			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-		end
+    on_attach = function(client, bufnr)
+    --if client.resolved_capabilities.document_formatting then
+		--  vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		--end
     -- client.resolved_capabilities.document_formatting = false
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
     -- if client.server_capabilities.documentFormattingProvider then
