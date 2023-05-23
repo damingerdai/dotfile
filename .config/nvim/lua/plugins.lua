@@ -7,8 +7,7 @@ local paccker_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
     vim.notify("正在安装Pakcer.nvim，请稍后...")
     paccker_bootstrap =
-        fn.system(
-        {
+        fn.system(        {
             "git",
             "clone",
             "--depth",
@@ -38,10 +37,6 @@ packer.startup(
         function(use)
             -- 这里是安装插件的位置 TODO:-------->
             use("wbthomason/packer.nvim")
-            -- Git
-            --use {
-            -- 'lewis6991/gitsigns.nvim',
-            -- }
             -- 旧主题
             --use("ful1e5/onedark.nvim")
             -- 新主题
@@ -121,6 +116,9 @@ packer.startup(
 
             -- treesitter (新增) 代码高亮
             use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+            -- A highly extendable fuzzy finder over lists
+            use 'nvim-telescope/telescope.nvim'
+            use 'nvim-telescope/telescope-file-browser.nvim'
 
             -- 切换多个终端
             use("akinsho/toggleterm.nvim")
