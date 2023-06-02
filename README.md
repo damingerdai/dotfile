@@ -3,4 +3,4 @@ daming personal dotfile
 
 # Neovim
 
-![neovim](./nvim-screenshot.png);
+![neovim](./nvim-screenshot.png)
