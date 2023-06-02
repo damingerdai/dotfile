@@ -1,5 +1,38 @@
 # daming nvim config
 
+## preview
+
+![neovim](../../nvim-screenshot.png)
+
+## install
+
+windows
+
+```bash
+winget install Neovim.Neovim
+
+choco install neovim
+
+scoop bucket add main
+scoop install neovim
+```
+
+macos
+
+```bash
+brew install neovim
+``
+
+linux
+
+```bash
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage
+```
+
+> for china user, use `https://ghproxy.com/https://github.com/neovim/neovim/releases/latest/download/nvim.appimage` to imporve network seed.
+
 ## setup 
 
 install packer.nvim
