@@ -64,6 +64,7 @@ packer.startup(
 
             -- dashboard
             use("glepnir/dashboard-nvim")
+            --use("goolord/alpha-nvim")
 
             --------------------- LSP --------------------
             use({"williamboman/nvim-lsp-installer"})
