@@ -10,6 +10,16 @@ local opt = {
 -- 本地变量
 local map = vim.api.nvim_set_keymap
 
+-- Increment/decrement
+map('n', '+', '<C-a>', opt)
+map('n', '-', '<C-x>', opt)
+
+-- Delete a word backwards
+map('n', 'dw', 'vb"_d', opt)
+
+-- Select all
+map('n', '<C-a>', 'gg<S-v>G', opt)
+
 -- $跳到行尾不带空格 (交换$ 和 g_)
 map("v", "$", "g_", opt)
 map("v", "g_", "$", opt)
