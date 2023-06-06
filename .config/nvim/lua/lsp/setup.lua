@@ -12,6 +12,7 @@ local lspconfig = require("lspconfig")
 local servers = {
   lua_ls = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
   bashls = require("lsp.config.bash"),
+  eslint = require("lsp.config.eslint"),
   dartls = require("lsp.config.dart"),
   pyright = require("lsp.config.pyright"),
   html = require("lsp.config.html"),
