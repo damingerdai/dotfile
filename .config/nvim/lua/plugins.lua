@@ -121,6 +121,10 @@ packer.startup(
             use 'nvim-telescope/telescope.nvim'
             use 'nvim-telescope/telescope-file-browser.nvim'
 
+            -- close tags quickly.
+            use 'windwp/nvim-autopairs'
+            use 'windwp/nvim-ts-autotag'
+
             -- 切换多个终端
             use("akinsho/toggleterm.nvim")
 
