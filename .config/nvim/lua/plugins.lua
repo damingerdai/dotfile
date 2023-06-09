@@ -127,6 +127,13 @@ packer.startup(
 
             -- 切换多个终端
             use("akinsho/toggleterm.nvim")
+            use {
+              'akinsho/flutter-tools.nvim',
+               requires = {
+                'nvim-lua/plenary.nvim',
+                'stevearc/dressing.nvim', -- optional for vim.ui.select
+              },
+            }
 
             if paccker_bootstrap then
                 packer.sync()
