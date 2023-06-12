@@ -118,6 +118,7 @@ packer.startup(
             -- treesitter (新增) 代码高亮
             use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
             -- A highly extendable fuzzy finder over lists
+            use 'nvim-lua/plenary.nvim'
             use 'nvim-telescope/telescope.nvim'
             use 'nvim-telescope/telescope-file-browser.nvim'
 

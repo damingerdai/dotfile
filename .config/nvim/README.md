@@ -48,6 +48,12 @@ instal nerod font
 brew tap homebrew/cask-fonts && brew install --cask font-jetbrains-mono-nerd-font
 ```
 
+install ripgrep which is a fast search tool
+
+```shell
+brew install ripgrep
+```
+
 ## refrence
 
 0. [简明 VIM 练级攻略](https://coolshell.cn/articles/5426.html)
