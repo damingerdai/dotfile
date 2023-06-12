@@ -38,8 +38,12 @@ chmod u+x nvim.appimage
 install packer.nvim
 
 ```shell
+# Unix, Linux Installation
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# Windows Powershell Installation
+git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
 ```
 
 instal nerod font
@@ -62,3 +66,4 @@ brew install ripgrep
 2. [Set up Neovim on a new M2 MacBook Air for coding React, TypeScript, Tailwind CSS, etc](https://www.youtube.com/watch?v=ajmK0ZNcM4Q)-->[text version:My Neovim setup for React, TypeScript, Tailwind CSS, etc](https://dev.to/craftzdog/my-neovim-setup-for-react-typescript-tailwind-css-etc-58fb)
 3. [学习 Neovim 全 lua 配置](https://zhuanlan.zhihu.com/p/571617696)
 4. [干掉vim的神奇neovim替代IDE, 来教你快速上手配置，保姆教程](https://learnku.com/articles/75829)
+5. [How to Set up Neovim for Windows and Linux with Lua and Packer](https://dev.to/slydragonn/how-to-set-up-neovim-for-windows-and-linux-with-lua-and-packer-2391)
