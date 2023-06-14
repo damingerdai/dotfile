@@ -60,6 +60,8 @@ brew install ripgrep
 
 # for widnwos
 choco install ripgrep
+# nvim-treesitter need c compiler
+choco install mingw
 ```
 
 ## refrence
