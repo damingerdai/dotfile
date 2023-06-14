@@ -55,7 +55,11 @@ brew tap homebrew/cask-fonts && brew install --cask font-jetbrains-mono-nerd-fon
 install ripgrep which is a fast search tool
 
 ```shell
+# for macos
 brew install ripgrep
+
+# for widnwos
+choco install ripgrep
 ```
 
 ## refrence
