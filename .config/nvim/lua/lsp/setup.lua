@@ -27,7 +27,8 @@ local servers = {
   gopls = require("lsp.config.gopls"),
   cssmodules_ls = require("lsp.config.cssmodules"),
   volar = require("lsp.config.vue"),
-  angularls = require("lsp.config.angular")
+  angularls = require("lsp.config.angular"),
+  tailwindcss = require("lsp.config.tailwindcss")
   -- sql  --- https://github.com/lighttiger2505/sql
 }
 

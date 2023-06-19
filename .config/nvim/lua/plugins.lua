@@ -105,6 +105,8 @@ packer.startup(
             use("fatih/vim-go")
             -- prettier
             use('jose-elias-alvarez/null-ls.nvim')
+            use 'williamboman/mason.nvim'
+            use 'williamboman/mason-lspconfig.nvim'
             use('MunifTanjim/prettier.nvim')
             -- eslint
             use('MunifTanjim/eslint.nvim')
