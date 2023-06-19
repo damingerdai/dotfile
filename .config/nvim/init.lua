@@ -7,7 +7,7 @@ require("plugins")
 -- 主题设置
 require("colorscheme")
 -- 内置LSP
-require("lsp.setup")
+--require("lsp.setup")
 require("lsp.cmp")
 require("lsp.ui")
 
