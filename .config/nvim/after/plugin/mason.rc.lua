@@ -25,6 +25,7 @@ masonlsp.setup({
 	ensure_installed = {
     'angularls',
 		"cssls",
+    "cssmodules_ls",
     'dockerls',
     'docker_compose_language_service',
 		"eslint",
