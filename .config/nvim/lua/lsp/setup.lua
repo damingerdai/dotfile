@@ -1,8 +1,3 @@
--- local lsp_installer = require("nvim-lsp-installer")
-require("nvim-lsp-installer").setup({
-  -- 自动安装 Language Servers
-  automatic_installation = true,
-})
 local lspconfig = require("lspconfig")
 
 -- 安装列表
@@ -13,11 +8,11 @@ local servers = {
   lua_ls = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
   bashls = require("lsp.config.bash"),
   eslint = require("lsp.config.eslint"),
-  dartls = require("lsp.config.dart"),
+  -- dartls = require("lsp.config.dart"),
   pyright = require("lsp.config.pyright"),
   html = require("lsp.config.html"),
   cssls = require("lsp.config.css"),
-  emmet_ls = require("lsp.config.emmet"),
+  -- emmet_ls = require("lsp.config.emmet"),
   jsonls = require("lsp.config.json"),
   tsserver = require("lsp.config.ts"),
   rust_analyzer = require("lsp.config.rust"),
@@ -41,4 +36,36 @@ for name, config in pairs(servers) do
     lspconfig[name].setup({})
   end
 end
+
+-- directly use lspconfig to support dart
+require("lspconfig").dartls.setup({
+  cmd = { "dart", "language-server", "--protocol=lsp" },
+  filetypes = { "dart" },
+  init_options = {
+      closingLabels = true,
+      flutterOutline = true,
+      onlyAnalyzeProjectsWithOpenFiles = true,
+      outline = true,
+      suggestFromUnimportedLibraries = true,
+  },
+  -- root_dir = root_pattern("pubspec.yaml"),
+  settings = {
+      dart = {
+          completeFunctionCalls = true,
+          showTodos = true,
+      },
+  },
+  on_attach = function(client, bufnr)
+  end,
+})
+
+
+require("lspconfig").eslint.setup({
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+})
 

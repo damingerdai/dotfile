@@ -63,14 +63,12 @@ packer.startup(
             use("kyazdani42/nvim-web-devicons")
 
             -- dashboard
-            use("glepnir/dashboard-nvim")
+            -- use("glepnir/dashboard-nvim")
             --use("goolord/alpha-nvim")
 
             --------------------- LSP --------------------
-            use({"williamboman/nvim-lsp-installer"})
+            -- use({"williamboman/nvim-lsp-installer"})
             -- rust-analyzer and CodeLLDB
-            use("williamboman/mason.nvim")
-            use("williamboman/mason-lspconfig.nvim")
             -- lsp 加载进度ui
             use("j-hui/fidget.nvim")
             use("arkav/lualine-lsp-progress")
@@ -103,10 +101,15 @@ packer.startup(
             use("simrat39/rust-tools.nvim")
             -- go 语法工具
             use("fatih/vim-go")
-            -- prettier
-            use('jose-elias-alvarez/null-ls.nvim')
+          
             use 'williamboman/mason.nvim'
             use 'williamboman/mason-lspconfig.nvim'
+            -- LSP diagnostics, code actions, and more via Lua.
+            use({
+                "jose-elias-alvarez/null-ls.nvim",
+                requires = { "nvim-lua/plenary.nvim" },
+            })
+            -- prettier
             use('MunifTanjim/prettier.nvim')
             -- eslint
             use('MunifTanjim/eslint.nvim')
