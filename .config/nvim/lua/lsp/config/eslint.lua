@@ -18,8 +18,8 @@ require'lspconfig'.eslint.setup{
       end,
 }
 
-local eslint_config = require("lspconfig.server_configurations.eslint")
+-- local eslint_config = require("lspconfig.server_configurations.eslint")
 
-lspconfig.eslint.setup {
-    opts.cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
-}
+-- lspconfig.eslint.setup {
+--     opts.cmd = { "yarn", "exec", unpack(eslint_config.default_config.cmd) }
+-- }

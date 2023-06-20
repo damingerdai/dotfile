@@ -63,26 +63,11 @@ packer.startup(
             use("kyazdani42/nvim-web-devicons")
 
             -- dashboard
-            use("glepnir/dashboard-nvim")
+            -- use("glepnir/dashboard-nvim")
             --use("goolord/alpha-nvim")
 
             --------------------- LSP --------------------
             -- use({"williamboman/nvim-lsp-installer"})
-            -- Mason: Portable package manager
-            use({
-                "williamboman/mason.nvim",
-                config = function()
-                    require("mason").setup()
-                end,
-            })
-
-            use({
-                "williamboman/mason-lspconfig.nvim",
-                config = function()
-                    require("configs.mason-lsp")
-                end,
-                after = "mason.nvim",
-            })
             -- rust-analyzer and CodeLLDB
             -- lsp 加载进度ui
             use("j-hui/fidget.nvim")
@@ -122,9 +107,6 @@ packer.startup(
             -- LSP diagnostics, code actions, and more via Lua.
             use({
                 "jose-elias-alvarez/null-ls.nvim",
-                config = function()
-                    require("configs.null-ls")
-                end,
                 requires = { "nvim-lua/plenary.nvim" },
             })
             -- prettier
