@@ -1,4 +1,8 @@
 vim.o.background = "dark"
+vim.g.tokyonight_style = "night" -- day / night
+-- 半透明
+vim.g.tokyonight_transparent = true
+vim.g.tokyonight_transparent_sidebar = true
 
 --local colorscheme = "onedark"
 --local status_ok, _ = pcall(vim.cmd, "colorscheme" .. colorscheme)
