@@ -1,11 +1,12 @@
 vim.o.background = "dark"
-vim.g.tokyonight_style = "night" -- day / night
+vim.g.tokyonight_style = "storm" -- day / night
 -- 半透明
 vim.g.tokyonight_transparent = true
 vim.g.tokyonight_transparent_sidebar = true
 
 --local colorscheme = "onedark"
-local colorscheme = "neosolarized"
+--local colorscheme = "neosolarized"
+local colorscheme = "tokyonight"
 
 local status_ok, neosolarized = pcall(require, colorscheme)
 if not status_ok then
@@ -18,6 +19,7 @@ if not theme_status_ok then
 end
 
 -- only for neosolarized
+--[[
 neosolarized.setup({
   comment_italics = true,
   background_set = false,
@@ -52,3 +54,12 @@ Group.new("DiagnosticUnderlineInfo", colors.none, colors.none, styles.undercurl,
 Group.new("DiagnosticUnderlineHint", colors.none, colors.none, styles.undercurl, cHint)
 
 Group.new("HoverBorder", colors.yellow, colors.none, styles.NONE)
+--]]
+
+
+vim.cmd[[colorscheme tokyonight]]
+local colors = require("tokyonight.colors").setup() -- pass in any of the config options as explained above
+local util = require("tokyonight.util")
+
+aplugin.background = colors.bg_dark
+aplugin.my_error = util.lighten(colors.red1, 0.3) -- number between 0 and 1. 0 results in white, 1 results in red1
