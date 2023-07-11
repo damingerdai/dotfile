@@ -4,7 +4,7 @@ if not vim.loop.fs_stat(lazypath) then
     "git",
     "clone",
     "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
+    "https://ghproxy.com/https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
     lazypath,
   })
@@ -24,5 +24,4 @@ local opts = {
   }
 }
 
-lazy.setup(plugins, opts)
-
+lazy.setup("plugins", opts)

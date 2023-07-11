@@ -2,8 +2,8 @@
 require("basic")
 -- 高亮
 require('highlights')
--- Packer插件管理
-require("plugins")
+-- 插件管理
+require("lazy-plugins")
 -- 主题设置
 require("colorscheme")
 -- 内置LSP
