@@ -9,6 +9,8 @@ require("lsp.setup")
 require("lsp.cmp")
 require("lsp.ui")
 
+require("keybindings")
+
 
 local has = function(x)
   return vim.fn.has(x) == 1
