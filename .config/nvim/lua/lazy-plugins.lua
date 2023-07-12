@@ -13,10 +13,12 @@ vim.opt.rtp:prepend(lazypath)
 
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
-    vim.notify("没有安装 lazy.nvim")
-    return
+  vim.notify("没有安装 lazy.nvim")
+  return
 end
 
+-- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.mapleader = " "
 
 local opts = {
   git = {
@@ -25,3 +27,4 @@ local opts = {
 }
 
 lazy.setup("plugins", opts)
+
