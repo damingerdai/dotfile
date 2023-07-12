@@ -19,9 +19,9 @@ scoop install neovim
 
 macos
 
-````bash
+``bash
 brew install neovim
-``
+``````
 
 linux
 
@@ -29,22 +29,11 @@ linux
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 ./nvim.appimage
-````
+```
 
 > for china user, use `https://ghproxy.com/https://github.com/neovim/neovim/releases/latest/download/nvim.appimage` to imporve network seed.
 
 ## setup
-
-install packer.nvim
-
-```shell
-# Unix, Linux Installation
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-# Windows Powershell Installation
-git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
-```
 
 instal nerod font
 
