@@ -64,7 +64,7 @@ packer.startup(
             use("kyazdani42/nvim-web-devicons")
 
             -- dashboard
-            -- use("glepnir/dashboard-nvim")
+            --use("glepnir/dashboard-nvim")
             --use("goolord/alpha-nvim")
 
             --------------------- LSP --------------------
