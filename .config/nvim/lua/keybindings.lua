@@ -194,9 +194,10 @@ map("n", "]s", "viw:lua require('spectre').open_file_search()<CR>", opt)
 map("n", "]v", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", opt)
 
 -- nvim-tree
-
 map("n", "<leader>1", ":NvimTreeToggle <CR>", opt)
 map("n", "<leader>2", ":NvimTreeFocus <CR>", opt)
+map("n", "<leader>e", ":NvimTreeToggle <CR>", opt)
+map("n", "<leader>o", ":NvimTreeFocus <CR>", opt)
 map("n", "<leader>mr", ":NvimTreeRefresh <CR>", opt)
 map("n", "<leader>mf", ":NvimTreeFindFile <CR>", opt)
 -- 列表快捷键
