@@ -282,7 +282,6 @@ pluginKeys.telescopeList = {
 }
 
 -- 代码注释插件
--- see ./lua/plugin-config/comment.lua
 pluginKeys.comment = {
     -- Normal 模式快捷键
     toggler = {
