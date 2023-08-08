@@ -197,7 +197,6 @@ map("n", "]v", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>"
 map("n", "<leader>1", ":NvimTreeToggle <CR>", opt)
 map("n", "<leader>2", ":NvimTreeFocus <CR>", opt)
 map("n", "<leader>e", ":NvimTreeToggle <CR>", opt)
-map("n", "<leader>o", ":NvimTreeFocus <CR>", opt)
 -- map("n", "<leader>o", ":NvimTreeFocus <CR>", opt)
 -- nvim_set_keymap 's not mapping it to the lua function directly.
 vim.keymap.set(
@@ -248,6 +247,8 @@ pluginKeys.nvimTreeList = {
 -- 左右Tab切换
 map("n", "<TAB>", ":BufferLineCycleNext<CR>", opt)
 map("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opt)
+map("n", "]b", ":BufferLineCycleNext<CR>", opt)
+map("n", "[b", ":BufferLineCyclePrev<CR>", opt)
 -- "moll/vim-bbye" 关闭当前 buffer
 map("n", "<leader>bc", ":Bdelete!<CR>", opt)
 -- 关闭左/右侧标签页
