@@ -8,7 +8,7 @@ return {
     },
     {
         -- Lua 增强
-        "folke/lua-dev.nvim"
+        "folke/neodev.nvim"
     },
     {
         -- JSON 增强
