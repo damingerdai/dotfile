@@ -19,9 +19,9 @@ scoop install neovim
 
 macos
 
-``bash
+```bash
 brew install neovim
-``````
+```
 
 linux
 
