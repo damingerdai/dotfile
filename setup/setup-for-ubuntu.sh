@@ -17,7 +17,8 @@ sudo chsh -s /bin/zsh
 
 zsh
 
-curl -OL https://golang.org/dl/go1.20.5.linux-amd64.tar.gz && sudo tar -C /usr/local -xvf go1.20.5.linux-amd64.tar.gz && echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc && source ~/.zshrc
+curl -OL https://golang.org/dl/go1.21.0.linux-amd64.tar.gz && sudo tar -C /usr/local -xvf go1.21.0.linux-amd64.tar.gz && echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc && source ~/.zshrc
+# curl -OL https://golang.google.cn/dl/go1.21.0.linux-amd64.tar.gz && sudo tar -C /usr/local -xvf go1.21.0.linux-amd64.tar.gz && echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc && source ~/.zshrc
 
 sudo apt-get install unzip
 curl -OL https://github.com/MordechaiHadad/bob/releases/download/v2.4.1/bob-linux-x86_64.zip && sudo unzip bob-linux-x86_64.zip -d /usr/local/bin && sudo chmod -R 755 /usr/local/bin/bob && source ~/.zshrc
