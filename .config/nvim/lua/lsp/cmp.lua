@@ -10,10 +10,10 @@ cmp.setup({
   snippet = {
     expand = function(args)
       -- For `vsnip` users.
-      vim.fn["vsnip#anonymous"](args.body)
+      -- vim.fn["vsnip#anonymous"](args.body)
 
       -- For `luasnip` users.
-      -- require('luasnip').lsp_expand(args.body)
+      require('luasnip').lsp_expand(args.body)
 
       -- For `ultisnips` users.
       -- vim.fn["UltiSnips#Anon"](args.body)
@@ -24,19 +24,53 @@ cmp.setup({
   },
   -- 来源
   sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "nvim_lsp_signature_help" },
-    -- For vsnip users.
-    { name = "vsnip" },
-    { name = "buffer" },
-     { name = 'spell' },
-    -- For luasnip users.
-    -- { name = 'luasnip' },
-    --For ultisnips users.
-    -- { name = 'ultisnips' },
-    -- -- For snippy users.
-    -- { name = 'snippy' },
-  }, { { name = "path" } }),
+    {
+      name = "nvim_lsp",
+      group_index = 1,
+      priority = 1000,
+    },
+    {
+      name = "nvim_lsp_signature_help",
+      group_index = 1,
+      priority = 1000,
+    },
+    {
+      name = "luasnip",
+      group_index = 2,
+      priority = 750,
+    },
+
+    -- { name = "copilot", group_index = 2, priority = 750 },
+    {
+      name = "buffer",
+      group_index = 3,
+      priority = 500,
+    },
+    {
+      name = "path",
+      group_index = 3,
+      priority = 300,
+    },
+    {
+      name = "spell",
+      group_index = 3,
+      priority = 300,
+    },
+  }),
+  -- sources = cmp.config.sources({
+  --   { name = "nvim_lsp" },
+  --   { name = "nvim_lsp_signature_help" },
+  --   -- For vsnip users.
+  --   -- { name = "vsnip" },
+  --   { name = "buffer" },
+  --   { name = 'spell' },
+  --   -- For luasnip users.
+  --   { name = 'luasnip' },
+  --   --For ultisnips users.
+  --   -- { name = 'ultisnips' },
+  --   -- -- For snippy users.
+  --   -- { name = 'snippy' },
+  -- }, { { name = "path" } }),
 
   -- 快捷键
   mapping = require("keybindings").cmp(cmp),
@@ -64,3 +98,4 @@ cmp.setup.cmdline(":", {
 -- 拼写建议
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_us' }
+

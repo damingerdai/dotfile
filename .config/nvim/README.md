@@ -68,3 +68,5 @@ brew install lua-language-server
 3. [学习 Neovim 全 lua 配置](https://zhuanlan.zhihu.com/p/571617696)
 4. [干掉 vim 的神奇 neovim 替代 IDE, 来教你快速上手配置，保姆教程](https://learnku.com/articles/75829)
 5. [How to Set up Neovim for Windows and Linux with Lua and Packer](https://dev.to/slydragonn/how-to-set-up-neovim-for-windows-and-linux-with-lua-and-packer-2391)
+6. [InsisVim](https://github.com/nshen/InsisVim)
+7. [astronvim_with_coc_or_mason](https://github.com/chaozwn/astronvim_with_coc_or_mason)
