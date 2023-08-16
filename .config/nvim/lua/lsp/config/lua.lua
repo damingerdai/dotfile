@@ -48,12 +48,11 @@ local opts = {
 -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- opts.capabilities = capabilities
 
--- 查看目录等信息
--- print(vim.inspect(server))
-
 return {
   on_setup = function(server)
-    opts = require("neodev").setup({ lspconfig = opts })
-    server.setup(opts)
+    local neodev = require("neodev")
+    neodev.setup({})
+    local lspconfig = require("lspconfig")
+    lspconfig.lua_ls.setup(opts)
   end,
 }
