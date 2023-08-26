@@ -1,0 +1,16 @@
+{
+    "setup": {
+      "prefix": ["rf"],
+      "body": [
+        "import * as React from 'react'",
+        "",
+        "",
+        "const ${0}: React.FC = () => {",
+        "return <div>${0}</div>",
+        "}",
+        "",
+        "export default ${0}"
+      ],
+      "description": "react tsx function component"
+    }
+}
