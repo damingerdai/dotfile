@@ -29,6 +29,8 @@
                 "language": [
                     "typescript",
                     "typescriptreact",
+                    "javascript",
+                    "javascriptreact"
                 ],
                 "path": "./react.json"
             },
