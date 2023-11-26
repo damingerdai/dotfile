@@ -8,6 +8,7 @@ local opt = {
 }
 
 -- 本地变量
+local keymap = vim.keymap
 local map = vim.api.nvim_set_keymap
 
 -- Increment/decrement
@@ -15,7 +16,7 @@ map('n', '+', '<C-a>', opt)
 map('n', '-', '<C-x>', opt)
 
 -- Delete a word backwards
-map('n', 'dw', 'vb"_d', opt)
+map('n', 'dw', 'vb"_d', {noremap = true, silent = true})
 
 -- Select all
 map('n', '<C-a>', 'gg<S-v>G', opt)
@@ -33,8 +34,8 @@ map("c", "<C-k>", "<C-p>", {noremap = false})
 map("n", "<C-s>", ":w<CR>", opt)
 
 -- fix :set wrap
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", {expr = true, silent = true})
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", {expr = true, silent = true})
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", {expr = true, silent = true})
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", {expr = true, silent = true})
 
 -- 上下滚动浏览
 map("n", "<C-j>", "5j", opt)
@@ -199,7 +200,7 @@ map("n", "<leader>2", ":NvimTreeFocus <CR>", opt)
 map("n", "<leader>e", ":NvimTreeToggle <CR>", opt)
 -- map("n", "<leader>o", ":NvimTreeFocus <CR>", opt)
 -- nvim_set_keymap 's not mapping it to the lua function directly.
-vim.keymap.set(
+keymap.set(
     "n",
     "<leader>o", 
     function()
@@ -340,10 +341,10 @@ map("n", "<leader>ta", "<cmd>ToggleTermToggleAll<CR>", opt)
 -- 特殊lazygit 窗口，需要安装lazygit
 -- <leader>tg lazygit
 pluginKeys.mapToggleTerm = function(toggleterm)
-    vim.keymap.set({"n", "t"}, "<leader>tf", toggleterm.toggleA)
-    vim.keymap.set({"n", "t"}, "<leader>tr", toggleterm.toggleB)
-    vim.keymap.set({"n", "t"}, "<leader>tb", toggleterm.toggleC)
-    vim.keymap.set({"n", "t"}, "<leader>tg", toggleterm.toggleG)
+    keymap.set({"n", "t"}, "<leader>tf", toggleterm.toggleA)
+    keymap.set({"n", "t"}, "<leader>tr", toggleterm.toggleB)
+    keymap.set({"n", "t"}, "<leader>tb", toggleterm.toggleC)
+    keymap.set({"n", "t"}, "<leader>tg", toggleterm.toggleG)
 end
 
 -- typescript 快捷键
