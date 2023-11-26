@@ -31,7 +31,7 @@ chmod u+x nvim.appimage
 ./nvim.appimage
 ```
 
-> for china user, use `https://ghproxy.com/https://github.com/neovim/neovim/releases/latest/download/nvim.appimage` to imporve network seed.
+> for china user, use `https://mirror.ghproxy.com/https://github.com/neovim/neovim/releases/latest/download/nvim.appimage` to imporve network seed.
 
 ## setup
 

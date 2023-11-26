@@ -151,7 +151,7 @@ packer.startup(
             max_jobs = 16,
             -- 自定义源
             git = {
-                default_url_format = "https://ghproxy.com/https://github.com/%s"
+                default_url_format = "https://mirror.ghproxy.com/https://github.com/%s"
             }
             -- display = {
             -- 使用浮动窗口显示

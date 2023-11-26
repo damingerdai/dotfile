@@ -4,7 +4,7 @@ if not vim.loop.fs_stat(lazypath) then
     "git",
     "clone",
     "--filter=blob:none",
-    "https://ghproxy.com/https://github.com/folke/lazy.nvim.git",
+    "https://mirror.ghproxy.com/https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
     lazypath,
   })
@@ -22,7 +22,7 @@ vim.g.mapleader = " "
 
 local opts = {
   git = {
-    url_format = "https://ghproxy.com/https://github.com/%s.git"
+    url_format = "https://mirror.ghproxy.com/https://github.com/%s.git"
   }
 }
 
