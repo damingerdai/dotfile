@@ -1,0 +1,1 @@
+cp -r -f .config/nvim/ ~/.config/nvim
