@@ -23,7 +23,7 @@ masonlsp.setup({
 	automatic_installation = true,
   -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 	ensure_installed = {
-    'angularls',
+    'angular-language_server',
     "cssls",
     "cssmodules_ls",
     'dockerls',
