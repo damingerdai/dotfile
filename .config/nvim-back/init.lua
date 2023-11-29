@@ -1,15 +1,16 @@
-vim.opt.termguicolors = true
-
+-- 基础配置
+require("basic")
 -- 插件管理
-require("config.lazy")
--- 快捷键管理
-require("config.keymaps")
+require("lazy-plugins")
 -- 主题设置
 require("colorscheme")
+-- 内置LSP
+require("lsp.setup")
+require("lsp.cmp")
+require("lsp.ui")
 
-local discipline = require("discipline")
+require("keybindings")
 
-discipline.cowboy()
 
 local has = function(x)
   return vim.fn.has(x) == 1
