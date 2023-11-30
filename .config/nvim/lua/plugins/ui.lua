@@ -113,31 +113,31 @@ return {
     },
 
     {
-		"folke/zen-mode.nvim",
-		cmd = "ZenMode",
-		opts = {
-			plugins = {
-				gitsigns = true,
-				tmux = true,
-				kitty = { enabled = false, font = "+2" },
-			},
-		},
-		keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
-	},
+        "folke/zen-mode.nvim",
+        cmd = "ZenMode",
+        opts = {
+            plugins = {
+                gitsigns = true,
+                tmux = true,
+                kitty = { enabled = false, font = "+2" },
+            },
+        },
+        keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+    },
 
     {
-		"nvimdev/dashboard-nvim",
-		event = "VimEnter",
-        dependencies = { {'nvim-tree/nvim-web-devicons'} },
-        config = function ()
-            local logo = [[ 
-            .___              .__                                .___      .__ 
+        "nvimdev/dashboard-nvim",
+        event = "VimEnter",
+        dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+        config = function()
+            local logo = [[
+            .___              .__                                .___      .__
             __| _/____    _____ |__| ____    ____   ___________  __| _/____  |__|
         / __ |\__  \  /     \|  |/    \  / ___\_/ __ \_  __ \/ __ |\__  \ |  |
         / /_/ | / __ \|  Y Y  \  |   |  \/ /_/  >  ___/|  | \/ /_/ | / __ \|  |
         \____ |(____  /__|_|  /__|___|  /\___  / \___  >__|  \____ |(____  /__|
-            \/     \/      \/        \//_____/      \/           \/     \/    
-  
+            \/     \/      \/        \//_____/      \/           \/     \/
+
         ]]
             logo = string.rep("\n", 8) .. logo .. "\n\n"
             local header = vim.split(logo, "\n")
@@ -149,19 +149,19 @@ return {
                 config
             }
         end,
-	-- 	opts = function(_, opts)
-	-- 		local logo = [[ 
-    --         .___              .__                                .___      .__ 
-    --         __| _/____    _____ |__| ____    ____   ___________  __| _/____  |__|
-    --     / __ |\__  \  /     \|  |/    \  / ___\_/ __ \_  __ \/ __ |\__  \ |  |
-    --     / /_/ | / __ \|  Y Y  \  |   |  \/ /_/  >  ___/|  | \/ /_/ | / __ \|  |
-    --     \____ |(____  /__|_|  /__|___|  /\___  / \___  >__|  \____ |(____  /__|
-    --         \/     \/      \/        \//_____/      \/           \/     \/    
-  
-    --   ]]
+        -- 	opts = function(_, opts)
+        -- 		local logo = [[
+        --         .___              .__                                .___      .__
+        --         __| _/____    _____ |__| ____    ____   ___________  __| _/____  |__|
+        --     / __ |\__  \  /     \|  |/    \  / ___\_/ __ \_  __ \/ __ |\__  \ |  |
+        --     / /_/ | / __ \|  Y Y  \  |   |  \/ /_/  >  ___/|  | \/ /_/ | / __ \|  |
+        --     \____ |(____  /__|_|  /__|___|  /\___  / \___  >__|  \____ |(____  /__|
+        --         \/     \/      \/        \//_____/      \/           \/     \/
 
-	-- 		logo = string.rep("\n", 8) .. logo .. "\n\n"
-	-- 		opts.config.header = vim.split(logo, "\n")
-	-- 	end,
-	},
+        --   ]]
+
+        -- 		logo = string.rep("\n", 8) .. logo .. "\n\n"
+        -- 		opts.config.header = vim.split(logo, "\n")
+        -- 	end,
+    },
 }

@@ -119,6 +119,7 @@ return {
 						},
 					},
 				},
+				gopls = {},
 				html = {},
 				yamlls = {
 					settings = {
