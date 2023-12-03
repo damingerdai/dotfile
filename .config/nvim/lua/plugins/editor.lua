@@ -13,6 +13,10 @@ return {
 		},
 	},
 	{
+		"nvim-neo-tree/neo-tree.nvim",
+		enabled = false
+	},
+	{
 		"echasnovski/mini.hipatterns",
 		event = "BufReadPre",
 		opts = {
@@ -42,110 +46,121 @@ return {
 			},
 		},
 	},
-    {
-        "kyazdani42/nvim-tree.lua",
-        lazy = false,
-        dependencies = {
-            "kyazdani42/nvim-web-devicons",
-        },
-        -- keys = {
-        --     {"<leader>e", ":NvimTreeToggle <CR>"},
-        --     {"<leader>o", ":NvimTreeFocus <CR>"},
-        -- },
-        opts = {
-            -- 隐藏 .文件 和 node_modules 文件夹
-            filters = {
-                dotfiles = false,
-                custom = { "^.git$" }
-            },
-            disable_netrw = true,
-            hijack_netrw = true,
-            -- auto_close = false,
-            open_on_tab = true,
-            hijack_cursor = true,
-            hijack_unnamed_buffer_when_opening = false,
-            update_cwd = true,
-            update_focused_file = {
-                enable = true,
-                update_cwd = false
-            },
-            renderer = {
-                indent_markers = {
-                    enable = true
-                },
-                add_trailing = true,
-                highlight_git = true,
-                highlight_opened_files = "none",
-                root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" },
-                icons = {
-                    show = {
-                        -- folders = true,
-                        -- files = true,
-                        git = true
-                    }
-                },
-                -- 隐藏根目录
-                root_folder_label = false,
-            },
-            view = {
-                -- 宽度
-                width = 36,
-                -- 也可以 'right'
-                side = "left",
-                -- 自定义列表中快捷键
-                -- mappings = {
-                --     custom_only = true
-                --     --[[ list = list_keys, ]]
-                -- },
-                -- 不显示行数
-                number = false,
-                relativenumber = false,
-                -- 显示图标
-                signcolumn = "yes"
-            },
-            git = {
-                enable = false,
-                ignore = false
-            },
-            actions = {
-                open_file = {
-                    resize_window = true
-                }
-            }
-        },
-    },
-    {
-        "akinsho/bufferline.nvim",
-        lazy = false,
-        -- event = "VeryLazy",
-        keys = {
-            { "<Tab>",   "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
-            { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
-            { "]b",      ":BufferLineCycleNext<CR>",     desc = "Next tab" },
-            { "[b",      ":BufferLineCyclePrev<CR>",     desc = "Prev tab" },
-        },
-        opts = function ()
-
-            return {
-                options = {
-                    -- 使用 nvim 内置lsp
-                    diagnostics = "nvim_lsp",
-                    -- 左侧让出 nvim-tree 的位置
-                    offsets = { {
-                        filetype = "NvimTree",
-                        text = "File Explorer",
-                        highlight = "Directory",
-                        text_align = "left"
-                    } },
-                    --mode = "tabs",
-                    -- separator_style = "slant",
-                    -- show_buffer_close_icons = false,
-                    -- show_close_icon = false,
-                },
-            }
-        end 
-    },
-    {
+	{
+		"kyazdani42/nvim-tree.lua",
+		lazy = false,
+		dependencies = {
+			"kyazdani42/nvim-web-devicons",
+		},
+		-- keys = {
+		--     {"<leader>e", ":NvimTreeToggle <CR>"},
+		--     {"<leader>o", ":NvimTreeFocus <CR>"},
+		-- },
+		opts = {
+			-- 隐藏 .文件 和 node_modules 文件夹
+			filters = {
+				dotfiles = false,
+				custom = { "^.git$" }
+			},
+			disable_netrw = true,
+			hijack_netrw = true,
+			-- auto_close = false,
+			open_on_tab = true,
+			hijack_cursor = true,
+			hijack_unnamed_buffer_when_opening = false,
+			update_cwd = true,
+			update_focused_file = {
+				enable = true,
+				update_cwd = false
+			},
+			renderer = {
+				indent_markers = {
+					enable = true
+				},
+				add_trailing = true,
+				highlight_git = true,
+				highlight_opened_files = "none",
+				root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" },
+				icons = {
+					show = {
+						-- folders = true,
+						-- files = true,
+						git = true
+					}
+				},
+				-- 隐藏根目录
+				root_folder_label = false,
+			},
+			view = {
+				-- 宽度
+				width = 36,
+				-- 也可以 'right'
+				side = "left",
+				-- 自定义列表中快捷键
+				-- mappings = {
+				--     custom_only = true
+				--     --[[ list = list_keys, ]]
+				-- },
+				-- 不显示行数
+				number = false,
+				relativenumber = false,
+				-- 显示图标
+				signcolumn = "yes"
+			},
+			git = {
+				enable = false,
+				ignore = false
+			},
+			actions = {
+				open_file = {
+					resize_window = true
+				}
+			}
+		},
+	},
+	{
+		"akinsho/bufferline.nvim",
+		dependencies = {
+			"mini.bufremove",
+			"moll/vim-bbye"
+		},
+		lazy = false,
+		-- event = "VeryLazy",
+		keys = {
+			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle pin" },
+			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
+			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",          desc = "Delete other buffers" },
+			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>",           desc = "Delete buffers to the right" },
+			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",            desc = "Delete buffers to the left" },
+			{ "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
+			{ "<S-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
+			{ "<Tab>",      "<Cmd>BufferLineCycleNext<CR>",            desc = "Next tab" },
+			{ "<S-Tab>",    "<Cmd>BufferLineCyclePrev<CR>",            desc = "Prev tab" },
+			{ "]b",         ":BufferLineCycleNext<CR>",                desc = "Next tab" },
+			{ "[b",         ":BufferLineCyclePrev<CR>",                desc = "Prev tab" },
+			{ "<leader>bc", ":Bdelete!<CR>", }
+		},
+		opts = function()
+			return {
+				options = {
+					-- 使用 nvim 内置lsp
+					diagnostics = "nvim_lsp",
+					-- 左侧让出 nvim-tree 的位置
+					offsets = { {
+						filetype = "NvimTree",
+						text = "File Explorer",
+						highlight = "Directory",
+						text_align = "left"
+					} },
+					--mode = "tabs",
+					-- separator_style = "slant",
+					-- show_buffer_close_icons = false,
+					-- show_close_icon = false,
+				},
+			}
+		end
+	},
+	{
 		"telescope.nvim",
 		dependencies = {
 			{
@@ -181,7 +196,8 @@ return {
 					local builtin = require("telescope.builtin")
 					builtin.live_grep()
 				end,
-				desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+				desc =
+				"Search for a string in your current working directory and get results live as you type, respects .gitignore",
 			},
 			{
 				"\\\\",
@@ -250,7 +266,7 @@ return {
 			local telescope = require("telescope")
 			local actions = require("telescope.actions")
 			local fb_actions = require("telescope").extensions.file_browser.actions
-            opts.defaults = opts.defaults or {}
+			opts.defaults = opts.defaults or {}
 			opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
 				wrap_results = true,
 				layout_strategy = "horizontal",

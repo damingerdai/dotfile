@@ -22,18 +22,18 @@ return {
 			-- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 			vim.list_extend(opts.ensure_installed, {
 				'angular-language-server',
-				"cssls",
-				"cssmodules_ls",
-				'dockerls',
-				'docker_compose_language_service',
-				"eslint",
-				"html",
-				"jsonls",
-				"tsserver",
-				"pyright",
-				"tailwindcss",
-				'rust_analyzer',
-				'golangci_lint_ls',
+				'css-lsp',
+				'cssmodules-language-server',
+				'docker-compose-language-service',
+				'dockerfile-language-server',
+				'eslint-lsp',
+				'html-lsp',
+				'json-lsp',
+				'typescript-language-server',
+				'pyright',
+				'tailwindcss-language-server',
+				'rust-analyzer',
+				'golangci-lint',
 				'gopls',
 			})
 			opts.ui = {
@@ -59,6 +59,7 @@ return {
 			end)
 			local function ensure_installed()
 				for _, tool in ipairs(opts.ensure_installed) do
+					
 					local p = mr.get_package(tool)
 					if not p:is_installed() then
 						p:install()
@@ -268,10 +269,10 @@ return {
 		-- Lua 增强
 		"folke/neodev.nvim"
 	},
-	{
-		-- JSON 增强
-		"b0o/schemastore.nvim"
-	},
+	-- {
+	-- 	-- JSON 增强
+	-- 	"b0o/schemastore.nvim"
+	-- },
 	{
 		-- Rust 增强
 		"simrat39/rust-tools.nvim"

@@ -1,11 +1,8 @@
+-- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.mapleader = " "
 vim.opt.termguicolors = true
-
--- 插件管理
+-- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
--- 快捷键管理
-require("config.keymaps")
--- 主题设置
-require("colorscheme")
 
 local discipline = require("discipline")
 
