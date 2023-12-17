@@ -3,8 +3,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local opt = {
-    noremap = true,
-    silent = true
+  noremap = true,
+  silent = true,
 }
 
 -- 本地变量
@@ -12,14 +12,29 @@ local keymap = vim.keymap
 local map = vim.api.nvim_set_keymap
 
 -- Increment/decrement
-map('n', '+', '<C-a>', opt)
-map('n', '-', '<C-x>', opt)
+map("n", "+", "<C-a>", opt)
+map("n", "-", "<C-x>", opt)
 
 -- Delete a word backwards
-map('n', 'dw', 'vb"_d', {noremap = true, silent = true})
+map("n", "dw", 'vb"_d', { noremap = true, silent = true })
+
+-- Split window
+keymap.set("n", "ss", ":split<Return>", opts)
+keymap.set("n", "sv", ":vsplit<Return>", opts)
+-- Move window
+keymap.set("n", "sh", "<C-w>h")
+keymap.set("n", "sk", "<C-w>k")
+keymap.set("n", "sj", "<C-w>j")
+keymap.set("n", "sl", "<C-w>l")
+
+-- Resize window
+keymap.set("n", "<C-w><left>", "<C-w><")
+keymap.set("n", "<C-w><right>", "<C-w>>")
+keymap.set("n", "<C-w><up>", "<C-w>+")
+keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- Select all
-map('n', '<C-a>', 'gg<S-v>G', opt)
+map("n", "<C-a>", "gg<S-v>G", opt)
 
 -- $跳到行尾不带空格 (交换$ 和 g_)
 map("v", "$", "g_", opt)
@@ -28,14 +43,14 @@ map("n", "$", "g_", opt)
 map("n", "g_", "$", opt)
 
 -- 命令行下 Ctrl+j/k  上一个下一个
-map("c", "<C-j>", "<C-n>", {noremap = false})
-map("c", "<C-k>", "<C-p>", {noremap = false})
+map("c", "<C-j>", "<C-n>", { noremap = false })
+map("c", "<C-k>", "<C-p>", { noremap = false })
 -- save file
 map("n", "<C-s>", ":w<CR>", opt)
 
 -- fix :set wrap
-keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", {expr = true, silent = true})
-keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", {expr = true, silent = true})
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- 上下滚动浏览
 map("n", "<C-j>", "5j", opt)
@@ -198,17 +213,13 @@ map("n", "<leader>2", ":NvimTreeFocus <CR>", opt)
 map("n", "<leader>e", ":NvimTreeToggle <CR>", opt)
 -- map("n", "<leader>o", ":NvimTreeFocus <CR>", opt)
 -- nvim_set_keymap 's not mapping it to the lua function directly.
-keymap.set(
-    "n",
-    "<leader>o", 
-    function()
-        if vim.bo.filetype == "NvimTree" then
-            vim.cmd.wincmd "p"
-        else
-            vim.cmd("NvimTreeFocus")
-        end
-    end, 
-    opt)
+keymap.set("n", "<leader>o", function()
+  if vim.bo.filetype == "NvimTree" then
+    vim.cmd.wincmd("p")
+  else
+    vim.cmd("NvimTreeFocus")
+  end
+end, opt)
 map("n", "<leader>mr", ":NvimTreeRefresh <CR>", opt)
 map("n", "<leader>mf", ":NvimTreeFindFile <CR>", opt)
 -- bufferline
@@ -245,8 +256,8 @@ map("n", "<leader>fp", ":Telescope projects<CR>", opt)
 map("n", "<leader>3", "<cmd>Vista!!<CR>", opt)
 
 -- ctrl + /
-map("n", "<C-_>", ",t", {noremap = false})
-map("v", "<C-_>", ",t", {noremap = false})
+map("n", "<C-_>", ",t", { noremap = false })
+map("v", "<C-_>", ",t", { noremap = false })
 -- map("i", "<C-_>", ",c", { noremap = false })
 
 -- switch
@@ -267,3 +278,4 @@ map("n", "<leader>tf", "<cmd>lua require('toggleterm').float_toggle()<CR>", opt)
 map("n", "<leader>tg", "<cmd>lua require('toggleterm').lazygit_toggle()<CR>", opt)
 -- 打开或关闭所有终端
 map("n", "<leader>ta", "<cmd>ToggleTermToggleAll<CR>", opt)
+
