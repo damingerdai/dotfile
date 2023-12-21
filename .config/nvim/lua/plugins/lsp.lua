@@ -84,6 +84,7 @@ return {
 			inlay_hints = { enabled = false },
 			---@type lspconfig.options
 			servers = {
+				angularls = {},
 				cssls = {},
 				tailwindcss = {
 					root_dir = function(...)
