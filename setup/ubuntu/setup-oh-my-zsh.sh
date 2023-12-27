@@ -16,3 +16,5 @@ echo 'alias rm="rm -i"' >>~/.zshrc
 sudo chsh -s /bin/zsh
 
 zsh
+
+source ~/.zshrc
