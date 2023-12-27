@@ -4,9 +4,20 @@
 
 ![neovim](../../nvim-screenshot.png)
 
+## requirements
+
+- Neovim >= 0.9.0 (needs to be built with LuaJIT)
+- Git >= 2.19.0 (for partial clones support)
+- a [Nerd Font](https://www.nerdfonts.com/) (v3.0 or greater) (optional, but to display somes icons)
+- [lazygit](https://github.com/jesseduffield/lazygit) (optional)
+- a C ompiler for _nvim-treesitter_. See [here](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
+- for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) (optional)
+  - live grep: [ripgrep](https://github.com/BurntSushi/ripgrep)
+  - find files: [fd](https://github.com/sharkdp/fd)
+
 ## install
 
-windows
+for windows user
 
 ```bash
 winget install Neovim.Neovim
@@ -17,7 +28,7 @@ scoop bucket add main
 scoop install neovim
 ```
 
-macos
+for macos user
 
 ```bash
 brew install neovim
@@ -51,6 +62,21 @@ brew install ripgrep
 choco install ripgrep
 # nvim-treesitter need c compiler
 choco install mingw
+```
+
+install fd
+
+```shell
+# macos
+brew install fd
+
+# windows
+scoop install fd
+choco install fd
+winget install sharkdp.fd
+
+# Ubuntu
+sudo apt install fd-find && ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
 ### language server
