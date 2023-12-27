@@ -6,4 +6,8 @@ sudo cp -r nvim-linux64/* /usr/local/ && \
 rm -rf nvim-linux64 && \
 rm nvim-linux64.tar.gz && \
 sudo ln -s /usr/local/nvim-linux64/bin/nvim /usr/bin/nvim && \
-source ~/.zshrc
+source ~/.zshrc && \
+sudo apt-get install ripgrep && \
+sudo apt install fd-find && \
+sudo ln -s $(which fdfind) /usr/bin/fd && \
+source ~/.zshrc && \
