@@ -79,6 +79,27 @@ winget install sharkdp.fd
 sudo apt install fd-find && ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
+install lazygit (optional)
+
+```bash
+# macos
+brew install jesseduffield/lazygit/lazygit
+brew install lazygit
+
+
+# windows
+# Add the extras bucket
+scoop bucket add extras
+# Install lazygit
+scoop install lazygit
+
+# ubuntu
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+```
+
 ### language server
 
 ```bash
