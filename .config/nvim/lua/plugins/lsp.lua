@@ -83,6 +83,7 @@ return {
       inlay_hints = { enabled = false },
       ---@type lspconfig.options
       servers = {
+        astro = {},
         angularls = {},
         cssls = {},
         tailwindcss = {
@@ -330,9 +331,6 @@ return {
   },
   {
     "rust-lang/rust.vim",
-    config = function ()
-      g:rustfmt_autosave = 1;
-    end
   },
   {
     "Saecki/crates.nvim",
