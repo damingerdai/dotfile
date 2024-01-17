@@ -1,9 +1,9 @@
 --vim.cmd("autocmd!")
 -- utf8
-vim.scriptencodeing = 'utf-8'
+vim.scriptencodeing = "utf-8"
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = "utf-8"
-vim.opt.encoding = 'utf-8'
+vim.opt.encoding = "utf-8"
 -- jkhl 移动时光标周围保留8行
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
@@ -85,7 +85,7 @@ vim.o.showmode = false
 -- 配置剪切板
 vim.opt.clipboard = "unnamedplus"
 -- shell使用zsh
-vim.opt.shell = 'zsh'
+vim.opt.shell = "zsh"
 
 vim.g.mapleader = " "
 
@@ -133,9 +133,14 @@ vim.cmd([[au BufNewFile,BufRead *.astro setf astro]])
 vim.cmd([[au BufNewFile,BufRead Podfile setf ruby]])
 
 if vim.fn.has("nvim-0.8") == 1 then
-	vim.opt.cmdheight = 0
+  vim.opt.cmdheight = 0
 end
 
 -- 拼写建议
 vim.opt.spell = true
-vim.opt.spelllang = { 'en_us' }
+vim.opt.spelllang = { "en_us" }
+
+-- rust
+-- auto fmt for saving rust code
+vim.cmd([[let g:rustfmt_autosave = 1]])
+
