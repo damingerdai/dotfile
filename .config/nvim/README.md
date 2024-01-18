@@ -42,7 +42,18 @@ chmod u+x nvim.appimage
 ./nvim.appimage
 ```
 
+or 
+
+```bash
+curl -OL https://github.com/neovim/neovim/releases/download/v0.9.4/nvim-linux64.tar.gz &&
+	tar -zxvf nvim-linux64.tar.gz &&
+	sudo cp -r nvim-linux64/ /usr/local/ &&
+	rm -rf nvim-linux64 &&
+	rm nvim-linux64.tar.gz &&
+```
+
 > for china user, use `https://mirror.ghproxy.com/https://github.com/neovim/neovim/releases/latest/download/nvim.appimage` to imporve network seed.
+
 
 ## setup
 
@@ -62,6 +73,9 @@ brew install ripgrep
 choco install ripgrep
 # nvim-treesitter need c compiler
 choco install mingw
+
+# Ubuntu
+sudo apt-get install ripgrep
 ```
 
 install fd
