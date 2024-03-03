@@ -198,17 +198,17 @@ map("n", "<leader>2", ":NvimTreeFocus <CR>", opt)
 map("n", "<leader>e", ":NvimTreeToggle <CR>", opt)
 -- map("n", "<leader>o", ":NvimTreeFocus <CR>", opt)
 -- nvim_set_keymap 's not mapping it to the lua function directly.
-keymap.set(
-    "n",
-    "<leader>o", 
-    function()
-        if vim.bo.filetype == "NvimTree" then
-            vim.cmd.wincmd "p"
-        else
-            vim.cmd("NvimTreeFocus")
-        end
-    end, 
-    opt)
+-- keymap.set(
+--     "n",
+--     "<leader>o", 
+--     function()
+--         if vim.bo.filetype == "NvimTree" then
+--             vim.cmd.wincmd "p"
+--         else
+--             vim.cmd("NvimTreeFocus")
+--         end
+--     end, 
+--     opt)
 map("n", "<leader>mr", ":NvimTreeRefresh <CR>", opt)
 map("n", "<leader>mf", ":NvimTreeFindFile <CR>", opt)
 -- bufferline
