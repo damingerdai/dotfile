@@ -1,91 +1,46 @@
 return {
-    -- messages, cmdline and the popupmenu
     {
-        "folke/noice.nvim",
-        dependencies = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..." entries
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        },
-        opts = function(_, opts)
-            opts.routes = opts.routes or {}
-            table.insert(opts.routes, {
-                filter = {
-                    event = "notify",
-                    find = "No information available",
-                },
-                opts = { skip = true },
-            })
-            local focused = true
-            vim.api.nvim_create_autocmd("FocusGained", {
-                callback = function()
-                    focused = true
-                end,
-            })
-            vim.api.nvim_create_autocmd("FocusLost", {
-                callback = function()
-                    focused = false
-                end,
-            })
-            table.insert(opts.routes, 1, {
-                filter = {
-                    cond = function()
-                        return not focused
-                    end,
-                },
-                view = "notify_send",
-                opts = { stop = false },
-            })
-
-            opts.commands = {
-                all = {
-                    -- options for the message history that you get with `:Noice`
-                    view = "split",
-                    opts = { enter = true, format = "details" },
-                    filter = {},
-                },
-            }
-
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = "markdown",
-                callback = function(event)
-                    vim.schedule(function()
-                        require("noice.text.markdown").keys(event.buf)
-                    end)
-                end,
-            })
-            if (opts.presets ~= nil) then
-                opts.presets.lsp_doc_border = true
-            end
-        end,
-    },
-    {
-        "rcarriga/nvim-notify",
-        keys = {
-            {
-                "<leader>un",
-                function()
-                    require("notify").dismiss({ silent = true, pending = true })
-                end,
-                desc = "Dismiss all Notifications",
-            },
-        },
-        opts = {
-            timeout = 5000,
-        },
-    },
-    -- animations
-    {
-        "echasnovski/mini.animate",
-        event = "VeryLazy",
-        opts = function(_, opts)
-            opts.scroll = {
-                enable = false,
-            }
-        end,
-    },
-
-    -- statusline
+		"akinsho/bufferline.nvim",
+		dependencies = {
+			"mini.bufremove",
+			"moll/vim-bbye"
+		},
+		lazy = false,
+		-- event = "VeryLazy",
+		keys = {
+			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle pin" },
+			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
+			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",          desc = "Delete other buffers" },
+			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>",           desc = "Delete buffers to the right" },
+			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",            desc = "Delete buffers to the left" },
+			{ "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
+			{ "<S-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
+			{ "<Tab>",      "<Cmd>BufferLineCycleNext<CR>",            desc = "Next tab" },
+			{ "<S-Tab>",    "<Cmd>BufferLineCyclePrev<CR>",            desc = "Prev tab" },
+			{ "]b",         ":BufferLineCycleNext<CR>",                desc = "Next tab" },
+			{ "[b",         ":BufferLineCyclePrev<CR>",                desc = "Prev tab" },
+			{ "<leader>bc", ":Bdelete!<CR>", }
+		},
+		opts = function()
+			return {
+				options = {
+					-- 使用 nvim 内置lsp
+					diagnostics = "nvim_lsp",
+					-- 左侧让出 nvim-tree 的位置
+					offsets = { {
+						filetype = "NvimTree",
+						text = "File Explorer",
+						highlight = "Directory",
+						text_align = "left"
+					} },
+					--mode = "tabs",
+					-- separator_style = "slant",
+					-- show_buffer_close_icons = false,
+					-- show_close_icon = false,
+				},
+			}
+		end
+	},
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
@@ -134,43 +89,43 @@ return {
         keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
     },
 
-    {
-        "nvimdev/dashboard-nvim",
-        event = "VimEnter",
-        dependencies = { { 'nvim-tree/nvim-web-devicons' } },
-        config = function()
-            local logo = [[
-            .___              .__                                .___      .__
-            __| _/____    _____ |__| ____    ____   ___________  __| _/____  |__|
-        / __ |\__  \  /     \|  |/    \  / ___\_/ __ \_  __ \/ __ |\__  \ |  |
-        / /_/ | / __ \|  Y Y  \  |   |  \/ /_/  >  ___/|  | \/ /_/ | / __ \|  |
-        \____ |(____  /__|_|  /__|___|  /\___  / \___  >__|  \____ |(____  /__|
-            \/     \/      \/        \//_____/      \/           \/     \/
+    -- {
+    --     "nvimdev/dashboard-nvim",
+    --     event = "VimEnter",
+    --     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+    --     config = function()
+    --         local logo = [[
+    --         .___              .__                                .___      .__
+    --         __| _/____    _____ |__| ____    ____   ___________  __| _/____  |__|
+    --     / __ |\__  \  /     \|  |/    \  / ___\_/ __ \_  __ \/ __ |\__  \ |  |
+    --     / /_/ | / __ \|  Y Y  \  |   |  \/ /_/  >  ___/|  | \/ /_/ | / __ \|  |
+    --     \____ |(____  /__|_|  /__|___|  /\___  / \___  >__|  \____ |(____  /__|
+    --         \/     \/      \/        \//_____/      \/           \/     \/
 
-        ]]
-            logo = string.rep("\n", 8) .. logo .. "\n\n"
-            local header = vim.split(logo, "\n")
-            local config = {
-                theme = 'hyper',
-                header = header,
-            }
-            require('dashboard').setup {
-                config
-            }
-        end,
-        -- 	opts = function(_, opts)
-        -- 		local logo = [[
-        --         .___              .__                                .___      .__
-        --         __| _/____    _____ |__| ____    ____   ___________  __| _/____  |__|
-        --     / __ |\__  \  /     \|  |/    \  / ___\_/ __ \_  __ \/ __ |\__  \ |  |
-        --     / /_/ | / __ \|  Y Y  \  |   |  \/ /_/  >  ___/|  | \/ /_/ | / __ \|  |
-        --     \____ |(____  /__|_|  /__|___|  /\___  / \___  >__|  \____ |(____  /__|
-        --         \/     \/      \/        \//_____/      \/           \/     \/
+    --     ]]
+    --         logo = string.rep("\n", 8) .. logo .. "\n\n"
+    --         local header = vim.split(logo, "\n")
+    --         local config = {
+    --             theme = 'hyper',
+    --             header = header,
+    --         }
+    --         require('dashboard').setup {
+    --             config
+    --         }
+    --     end,
+    --     -- 	opts = function(_, opts)
+    --     -- 		local logo = [[
+    --     --         .___              .__                                .___      .__
+    --     --         __| _/____    _____ |__| ____    ____   ___________  __| _/____  |__|
+    --     --     / __ |\__  \  /     \|  |/    \  / ___\_/ __ \_  __ \/ __ |\__  \ |  |
+    --     --     / /_/ | / __ \|  Y Y  \  |   |  \/ /_/  >  ___/|  | \/ /_/ | / __ \|  |
+    --     --     \____ |(____  /__|_|  /__|___|  /\___  / \___  >__|  \____ |(____  /__|
+    --     --         \/     \/      \/        \//_____/      \/           \/     \/
 
-        --   ]]
+    --     --   ]]
 
-        -- 		logo = string.rep("\n", 8) .. logo .. "\n\n"
-        -- 		opts.config.header = vim.split(logo, "\n")
-        -- 	end,
-    },
+    --     -- 		logo = string.rep("\n", 8) .. logo .. "\n\n"
+    --     -- 		opts.config.header = vim.split(logo, "\n")
+    --     -- 	end,
+    -- },
 }

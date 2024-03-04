@@ -138,9 +138,8 @@ end
 
 -- 拼写建议
 vim.opt.spell = true
-vim.opt.spelllang = { "en_us" }
+vim.opt.spelllang = { "en_us" }-- rust
 
--- rust
--- auto fmt for saving rust code
-vim.cmd([[let g:rustfmt_autosave = 1]])
-
+-- --rust
+-- -- auto fmt for saving rust code
+-- vim.cmd([[let g:rustfmt_autosave = 1]])

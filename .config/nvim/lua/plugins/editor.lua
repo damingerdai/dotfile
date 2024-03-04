@@ -1,40 +1,159 @@
 return {
-	{
-		enabled = false,
-		"folke/flash.nvim",
-		---@type Flash.Config
-		opts = {
-			search = {
-				forward = true,
-				multi_window = false,
-				wrap = false,
-				incremental = true,
-			},
-		},
-	},
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		enabled = false
-	},
-	{
-		"echasnovski/mini.hipatterns",
-		event = "BufReadPre",
-		opts = {
-			highlighters = {
-				hsl_color = {
-					pattern = "hsl%(%d+,? %d+,? %d+%)",
-					group = function(_, match)
-						local utils = require("colors")
-						local h, s, l = match:match("hsl%((%d+),? (%d+),? (%d+)%)")
-						h, s, l = tonumber(h), tonumber(s), tonumber(l)
-						local hex_color = utils.hslToHex(h, s, l)
-						return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
-					end,
-				},
-			},
-		},
-	},
-	{
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        vscode = true,
+        ---@type Flash.Config
+        opts = {},
+        -- stylua: ignore
+        keys = {
+            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+            { "S",     mode = { "n", "o", "x" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+        },
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        enabled = false,
+    },
+    {
+        "kyazdani42/nvim-tree.lua",
+        lazy = false,
+        dependencies = {
+            "kyazdani42/nvim-web-devicons",
+        },
+        keys = {
+            {
+                "<leader>er",
+                function()
+                    vim.cmd "NvimTreeRefresh"
+                end,
+                desc = "Refresh"
+            },
+            {
+                "<leader>en",
+                function()
+                    vim.cmd "NvimTreeFindFile"
+                end,
+                desc = "Find File"
+            },
+            {
+                "<leader>e",
+                function()
+                    vim.cmd "NvimTreeToggle"
+                end,
+                desc = "Toggle"
+            },
+            {
+                "<leader>o",
+                function()
+                    if vim.bo.filetype == "NvimTree" then
+                        vim.cmd "wincmd p"
+                    else
+                        vim.cmd "NvimTreeFocus"
+                    end
+                end,
+                noremap = true,
+                silent = true,
+            },
+            -- {"<leader>r", ":NvimTreeRefresh <CR>", desc = ""},
+            -- {"<leader>n", ":NvimTreeFindFile <CR>", desc = ""},
+            {
+                "<leader>o", 
+                function()
+                    if vim.bo.filetype == "NvimTree" then
+                        vim.cmd.wincmd "p"
+                    else
+                        vim.cmd("NvimTreeFocus")
+                    end
+                end,
+                noremap = true,
+                silent = true,
+            },
+        },
+        opts = {
+            -- 隐藏 .文件 和 node_modules 文件夹
+            filters = {
+                dotfiles = false,
+                custom = { "^.git$" }
+            },
+            disable_netrw = true,
+            hijack_netrw = true,
+            -- auto_close = false,
+            open_on_tab = true,
+            hijack_cursor = true,
+            hijack_unnamed_buffer_when_opening = false,
+            update_cwd = true,
+            update_focused_file = {
+                enable = true,
+                update_cwd = false
+            },
+            renderer = {
+                indent_markers = {
+                    enable = true
+                },
+                add_trailing = true,
+                highlight_git = true,
+                highlight_opened_files = "none",
+                root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" },
+                icons = {
+                    show = {
+                        -- folders = true,
+                        -- files = true,
+                        git = true
+                    }
+                },
+                -- 隐藏根目录
+                root_folder_label = false,
+            },
+            view = {
+                -- 宽度
+                width = 36,
+                -- 也可以 'right'
+                side = "left",
+                -- 自定义列表中快捷键
+                -- mappings = {
+                --     custom_only = true
+                --     --[[ list = list_keys, ]]
+                -- },
+                -- 不显示行数
+                number = false,
+                relativenumber = false,
+                -- 显示图标
+                signcolumn = "yes"
+            },
+            git = {
+                enable = false,
+                ignore = false
+            },
+            actions = {
+                open_file = {
+                    resize_window = true
+                }
+            }
+        },
+    },
+    -- {
+	-- 	"echasnovski/mini.hipatterns",
+	-- 	event = "BufReadPre",
+	-- 	opts = {
+	-- 		highlighters = {
+	-- 			hsl_color = {
+	-- 				pattern = "hsl%(%d+,? %d+,? %d+%)",
+	-- 				group = function(_, match)
+	-- 					local utils = require("colors")
+	-- 					local h, s, l = match:match("hsl%((%d+),? (%d+),? (%d+)%)")
+	-- 					h, s, l = tonumber(h), tonumber(s), tonumber(l)
+	-- 					local hex_color = utils.hslToHex(h, s, l)
+	-- 					return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
+	-- 				end,
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
+    {
 		"dinhhuy258/git.nvim",
 		event = "BufReadPre",
 		opts = {
@@ -45,120 +164,6 @@ return {
 				browse = "<Leader>go",
 			},
 		},
-	},
-	{
-		"kyazdani42/nvim-tree.lua",
-		lazy = false,
-		dependencies = {
-			"kyazdani42/nvim-web-devicons",
-		},
-		-- keys = {
-		--     {"<leader>e", ":NvimTreeToggle <CR>"},
-		--     {"<leader>o", ":NvimTreeFocus <CR>"},
-		-- },
-		opts = {
-			-- 隐藏 .文件 和 node_modules 文件夹
-			filters = {
-				dotfiles = false,
-				custom = { "^.git$" }
-			},
-			disable_netrw = true,
-			hijack_netrw = true,
-			-- auto_close = false,
-			open_on_tab = true,
-			hijack_cursor = true,
-			hijack_unnamed_buffer_when_opening = false,
-			update_cwd = true,
-			update_focused_file = {
-				enable = true,
-				update_cwd = false
-			},
-			renderer = {
-				indent_markers = {
-					enable = true
-				},
-				add_trailing = true,
-				highlight_git = true,
-				highlight_opened_files = "none",
-				root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" },
-				icons = {
-					show = {
-						-- folders = true,
-						-- files = true,
-						git = true
-					}
-				},
-				-- 隐藏根目录
-				root_folder_label = false,
-			},
-			view = {
-				-- 宽度
-				width = 36,
-				-- 也可以 'right'
-				side = "left",
-				-- 自定义列表中快捷键
-				-- mappings = {
-				--     custom_only = true
-				--     --[[ list = list_keys, ]]
-				-- },
-				-- 不显示行数
-				number = false,
-				relativenumber = false,
-				-- 显示图标
-				signcolumn = "yes"
-			},
-			git = {
-				enable = false,
-				ignore = false
-			},
-			actions = {
-				open_file = {
-					resize_window = true
-				}
-			}
-		},
-	},
-	{
-		"akinsho/bufferline.nvim",
-		dependencies = {
-			"mini.bufremove",
-			"moll/vim-bbye"
-		},
-		lazy = false,
-		-- event = "VeryLazy",
-		keys = {
-			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle pin" },
-			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",          desc = "Delete other buffers" },
-			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>",           desc = "Delete buffers to the right" },
-			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",            desc = "Delete buffers to the left" },
-			{ "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
-			{ "<S-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
-			{ "<Tab>",      "<Cmd>BufferLineCycleNext<CR>",            desc = "Next tab" },
-			{ "<S-Tab>",    "<Cmd>BufferLineCyclePrev<CR>",            desc = "Prev tab" },
-			{ "]b",         ":BufferLineCycleNext<CR>",                desc = "Next tab" },
-			{ "[b",         ":BufferLineCyclePrev<CR>",                desc = "Prev tab" },
-			{ "<leader>bc", ":Bdelete!<CR>", }
-		},
-		opts = function()
-			return {
-				options = {
-					-- 使用 nvim 内置lsp
-					diagnostics = "nvim_lsp",
-					-- 左侧让出 nvim-tree 的位置
-					offsets = { {
-						filetype = "NvimTree",
-						text = "File Explorer",
-						highlight = "Directory",
-						text_align = "left"
-					} },
-					--mode = "tabs",
-					-- separator_style = "slant",
-					-- show_buffer_close_icons = false,
-					-- show_close_icon = false,
-				},
-			}
-		end
 	},
 	{
 		"telescope.nvim",

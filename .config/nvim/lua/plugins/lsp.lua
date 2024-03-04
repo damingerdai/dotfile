@@ -1,356 +1,114 @@
 return {
   -- tools
   {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
-    dependencies = {
-      "mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      -- Useful status updates for LSP
-      { "j-hui/fidget.nvim", tag = "legacy", config = true },
-      -- Additional lua configuration, makes nvim stuff amazing
-      { "folke/neodev.nvim", config = true },
-      "hrsh7th/cmp-nvim-lsp",
-      "mason-registry",
-    },
-    build = ":MasonUpdate",
-    opts = function(_, opts)
-      opts.automatic_installation = true
-      opts.ensure_installed = opts.ensure_installed or {}
-      -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-      vim.list_extend(opts.ensure_installed, {
-        "angular-language-server",
-        "css-lsp",
-        "cssmodules-language-server",
-        "docker-compose-language-service",
-        "dockerfile-language-server",
-        "eslint-lsp",
-        "html-lsp",
-        "json-lsp",
-        "typescript-language-server",
-        "pyright",
-        "tailwindcss-language-server",
-        "rust-analyzer",
-        "golangci-lint",
-        "gopls",
-      })
-      opts.ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
-        },
-      }
-    end,
-    ---@param opts MasonSettings | {ensure_installed: string[]}
-    config = function(_, opts)
-      require("mason").setup(opts)
-      local mr = require("mason-registry")
-      mr:on("package:install:success", function()
-        vim.defer_fn(function()
-          -- trigger FileType event to possibly load this newly installed LSP server
-          require("lazy.core.handler.event").trigger({
-            event = "FileType",
-            buf = vim.api.nvim_get_current_buf(),
+      "williamboman/mason.nvim",
+      cmd = "Mason",
+      keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+      dependencies = {
+          "mason.nvim",
+          "williamboman/mason-lspconfig.nvim",
+          "williamboman/mason-lspconfig.nvim",
+          -- Useful status updates for LSP
+          { "j-hui/fidget.nvim", tag = "legacy", config = true },
+          -- Additional lua configuration, makes nvim stuff amazing
+          { "folke/neodev.nvim", config = true },
+          "hrsh7th/cmp-nvim-lsp",
+          "mason-registry",
+      },
+      build = ":MasonUpdate",
+      opts = function(_, opts)
+          opts.automatic_installation = true
+          opts.ensure_installed = opts.ensure_installed or {}
+          -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
+          vim.list_extend(opts.ensure_installed, {
+              "angular-language-server",
+              "css-lsp",
+              "cssmodules-language-server",
+              "docker-compose-language-service",
+              "dockerfile-language-server",
+              "eslint-lsp",
+              "html-lsp",
+              "json-lsp",
+              "typescript-language-server",
+              "pyright",
+              "tailwindcss-language-server",
+              "rust-analyzer",
+              "golangci-lint",
+              "gopls",
           })
-        end, 100)
-      end)
-      local function ensure_installed()
-        for _, tool in ipairs(opts.ensure_installed) do
-          local p = mr.get_package(tool)
-          if not p:is_installed() then
-            p:install()
-          end
-        end
-      end
-      local masonlsp = require("mason-lspconfig")
-      if mr.refresh then
-        mr.refresh(ensure_installed)
-      else
-        ensure_installed()
-      end
-    end,
+          opts.ui = {
+              icons = {
+                  package_installed = "✓",
+                  package_pending = "➜",
+                  package_uninstalled = "✗",
+              },
+          }
+      end,
   },
-  { "folke/neodev.nvim", opts = {} },
+  {
+      "folke/neodev.nvim",
+      opts = {}
+  },
 
   -- lsp servers
   {
-    "neovim/nvim-lspconfig",
-    lazy = false,
-    opts = {
-      inlay_hints = { enabled = false },
-      ---@type lspconfig.options
-      servers = {
-        astro = {},
-        angularls = {},
-        cssls = {},
-        tailwindcss = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
-        },
-        tsserver = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
-          single_file_support = false,
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "literal",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-          },
-        },
-        gopls = {},
-        html = {},
-        yamlls = {
-          settings = {
-            yaml = {
-              keyOrdering = false,
-            },
-          },
-        },
-        lua_ls = {
-          -- enabled = false,
-          single_file_support = true,
-          settings = {
-            Lua = {
-              workspace = {
-                checkThirdParty = false,
-              },
-              completion = {
-                workspaceWord = true,
-                callSnippet = "Both",
-              },
-              misc = {
-                parameters = {
-                  -- "--log-level=trace",
-                },
-              },
-              hint = {
-                enable = true,
-                setType = false,
-                paramType = true,
-                paramName = "Disable",
-                semicolon = "Disable",
-                arrayIndex = "Disable",
-              },
-              doc = {
-                privateName = { "^_" },
-              },
-              type = {
-                castNumberToInteger = true,
-              },
-              diagnostics = {
-                disable = { "incomplete-signature-doc", "trailing-space" },
-                -- enable = false,
-                groupSeverity = {
-                  strong = "Warning",
-                  strict = "Warning",
-                },
-                groupFileStatus = {
-                  ["ambiguity"] = "Opened",
-                  ["await"] = "Opened",
-                  ["codestyle"] = "None",
-                  ["duplicate"] = "Opened",
-                  ["global"] = "Opened",
-                  ["luadoc"] = "Opened",
-                  ["redefined"] = "Opened",
-                  ["strict"] = "Opened",
-                  ["strong"] = "Opened",
-                  ["type-check"] = "Opened",
-                  ["unbalanced"] = "Opened",
-                  ["unused"] = "Opened",
-                },
-                unusedLocalExclude = { "_*" },
-              },
-              format = {
-                enable = false,
-                defaultConfig = {
-                  indent_style = "space",
-                  indent_size = "2",
-                  continuation_indent_size = "2",
-                },
-              },
-            },
-          },
-        },
-        rust_analyzer = {
-          keys = {
-            { "K", "<cmd>RustHoverActions<cr>", desc = "Hover Actions (Rust)" },
-            { "<leader>cR", "<cmd>RustCodeAction<cr>", desc = "Code Action (Rust)" },
-            { "<leader>dr", "<cmd>RustDebuggables<cr>", desc = "Run Debuggables (Rust)" },
-          },
-          settings = {
-            ["rust-analyzer"] = {
-              cargo = {
-                allFeatures = true,
-                loadOutDirsFromCheck = true,
-                runBuildScripts = true,
-              },
-              -- Add clippy lints for Rust.
-              checkOnSave = {
-                allFeatures = true,
-                command = "clippy",
-                extraArgs = { "--no-deps" },
-              },
-              procMacro = {
-                enable = true,
-                ignored = {
-                  ["async-trait"] = { "async_trait" },
-                  ["napi-derive"] = { "napi" },
-                  ["async-recursion"] = { "async_recursion" },
-                },
-              },
-            },
-          },
-        },
-        taplo = {
-          keys = {
-            {
-              "K",
-              function()
-                if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
-                  require("crates").show_popup()
-                else
-                  vim.lsp.buf.hover()
-                end
-              end,
-              desc = "Show Crate Documentation",
-            },
-          },
-        },
-      },
-      setup = {
-        rust_analyzer = function(_, opts)
-          local rust_tools_opts = require("lazyvim.util").opts("rust-tools.nvim")
-          require("rust-tools").setup(vim.tbl_deep_extend("force", rust_tools_opts or {}, { server = opts }))
-          return true
-        end,
-      },
-    },
-    config = function(_, opts)
-      -- inlay_hint
-      local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
-      if opts.inlay_hints.enabled and inlay_hint then
-        inlay_hint(0, true)
-      end
-
-      -- servers
-      local servers = opts.servers
-      local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-      local capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        has_cmp and cmp_nvim_lsp.default_capabilities() or {},
-        opts.capabilities or {}
-      )
-      local function setup(server)
-        local server_opts = vim.tbl_deep_extend("force", {
-          capabilities = vim.deepcopy(capabilities),
-        }, servers[server] or {})
-
-        if opts.setup[server] then
-          if opts.setup[server](server, server_opts) then
-            return
-          end
-        elseif opts.setup["*"] then
-          if opts.setup["*"](server, server_opts) then
-            return
-          end
-        end
-        require("lspconfig")[server].setup(server_opts)
-      end
-      for server, server_opts in pairs(servers) do
-        setup(server)
-      end
-      local lspconfig = require("lspconfig")
-      lspconfig.pyright.setup({})
-      lspconfig.tsserver.setup({})
-      -- lspconfig.rust_analyzer.setup {
-      -- 	-- Server-specific settings. See `:help lspconfig-setup`
-      -- 	settings = {
-      -- 		['rust-analyzer'] = {},
-      -- 	},
-      -- }
-    end,
+      "neovim/nvim-lspconfig",
+      lazy = true,
+      opts = {
+          inlay_hints = { enabled = false },
+          ---@type lspconfig.options
+          servers = {
+              astro = {},
+              angularls = {},
+              cssls = {},
+              html = {},
+          }
+      }
   },
+
+  { import = "lazyvim.plugins.extras.lang.typescript" },
+  { import = "lazyvim.plugins.extras.lang.tailwind" },
+  { import = "lazyvim.plugins.extras.lang.json" },
+  { import = "lazyvim.plugins.extras.lang.rust" },
+  { import = "lazyvim.plugins.extras.lang.go" },
+  { import = "lazyvim.plugins.extras.lang.docker" },
 
   -- lsp 加载进度ui
   {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "LspAttach",
-    opts = {
-      -- options
-    },
-  },
-  {
-    "arkav/lualine-lsp-progress",
-  },
-
-  {
-    -- TypeScript 增强
-    "jose-elias-alvarez/nvim-lsp-ts-utils",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
-  {
-    -- Lua 增强
-    "folke/neodev.nvim",
-  },
-  -- {
-  -- 	-- JSON 增强
-  -- 	"b0o/schemastore.nvim"
-  -- },
-  {
-    -- Rust 增强
-    "simrat39/rust-tools.nvim",
-  },
-  {
-    "rust-lang/rust.vim",
-  },
-  {
-    "Saecki/crates.nvim",
-    event = { "BufRead Cargo.toml" },
-    opts = {
-      src = {
-        cmp = { enabled = true },
+      "j-hui/fidget.nvim",
+      opts = {
+          -- options
       },
-    },
   },
   {
-    -- go 语法工具
-    "fatih/vim-go",
+      "arkav/lualine-lsp-progress",
   },
   {
-    -- prettier
-    "MunifTanjim/prettier.nvim",
+      -- Rust 增强
+      "simrat39/rust-tools.nvim",
   },
   {
-    -- eslint
-    "MunifTanjim/eslint.nvim",
+      "rust-lang/rust.vim",
+  },
+  {
+      "Saecki/crates.nvim",
+      event = { "BufRead Cargo.toml" },
+      opts = {
+          src = {
+              cmp = { enabled = true },
+          },
+      },
+  },
+  {
+      -- go 语法工具
+      "fatih/vim-go",
+  },
+  {
+      -- prettier
+      "MunifTanjim/prettier.nvim",
+  },
+  {
+      -- eslint
+      "MunifTanjim/eslint.nvim",
   },
 }
