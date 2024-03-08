@@ -4,7 +4,7 @@
 tmux source-file ~/.config/tmux/tmux.conf
 ```
 
-当然可以，以下是使用 Markdown 格式整理的 `tmux` 键绑定说明：
+以下是使用 Markdown 格式整理的 `tmux` 键绑定说明：
 
 ---
 
@@ -30,6 +30,9 @@ tmux source-file ~/.config/tmux/tmux.conf
 
 - **`<prefix> C-c`**: 创建新会话
 - **`<prefix> C-f`**: 通过名称切换到另一个会话
+- **`<prefix> C-d`**: 将当前的 tmux 会话分离（detach），并返回到原始的终端窗口
+- **`<prefix> C-x`**: 关闭当前的窗格（pane）
+- **`<prefix> C-b`**: 进入命令模式，然后输入 kill-session 并按下回车键：这个命令可以关闭当前的 tmux 会话
 
 ### 窗口和面板操作
 
