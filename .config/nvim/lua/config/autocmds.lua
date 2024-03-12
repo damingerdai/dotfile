@@ -16,10 +16,3 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.rs",
-  callback = function()
-      -- 使用LSP的格式化功能
-      vim.lsp.buf.formatting_sync()
-  end
-})
