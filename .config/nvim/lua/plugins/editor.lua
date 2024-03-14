@@ -19,10 +19,10 @@ return {
         enabled = false,
     },
     {
-        "kyazdani42/nvim-tree.lua",
+        "nvim-tree/nvim-tree.lua",
         lazy = false,
         dependencies = {
-            "kyazdani42/nvim-web-devicons",
+            "nvim-tree/nvim-web-devicons",
         },
         keys = {
             {
