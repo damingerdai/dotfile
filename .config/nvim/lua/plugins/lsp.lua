@@ -101,8 +101,9 @@ return {
         "arkav/lualine-lsp-progress",
     },
     {
-        -- Rust 增强
-        "simrat39/rust-tools.nvim",
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        ft = { 'rust' },
     },
     {
         "rust-lang/rust.vim",
