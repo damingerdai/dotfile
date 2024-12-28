@@ -3,10 +3,10 @@
 # Check if the --mirror flag is present
 if [[ "$1" == "--mirror" ]]; then
   # Use domestic mirror for China users
-  DOCKER_COMPOSE_URL="https://ghgo.xyz/https://github.com/docker/compose/releases/download/v2.27.1/docker-compose-linux-x86_64"
+  DOCKER_COMPOSE_URL="https://ghgo.xyz/https://github.com/docker/compose/releases/download/v2.32.1/docker-compose-linux-x86_64"
 else
   # Use official Docker Compose URL
-  DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/v2.27.1/docker-compose-linux-x86_64"
+  DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/download/v2.32.1/docker-compose-linux-x86_64"
 fi
 
 # Install curl
