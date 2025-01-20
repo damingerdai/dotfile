@@ -8,7 +8,6 @@ return {
         "angular-language-server",
         "css-lsp",
         "prettier",
-        "rust-analyzer",
         "goimports",
         "gopls",
         "stylua",
