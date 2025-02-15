@@ -114,6 +114,24 @@ fi
 # Source .zshrc to update environment variables
 source ~/.zshrc
 
+check_and_install_make() {
+  if command -v make &>/dev/null; then
+    echo "make exists"
+  else
+    echo "install make"
+    sudo apt update
+    sudo install -y make
+    if command -v make &>/dev/null; then
+      echo "make 安装成功。"
+    else
+      echo "make 安装失败，请手动检查。"
+      exit 1
+    fi
+  fi
+}
+
+check_and_install_make
+
 # curl -OL https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz &&
 # 	tar -zxvf nvim-linux64.tar.gz &&
 # 	sudo cp -r nvim-linux64/ /usr/local/ &&
