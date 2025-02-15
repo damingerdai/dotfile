@@ -66,9 +66,9 @@ return {
     opts = {
       sources = { "filesystem", "buffers", "git_status", "document_symbols" },
       open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
-      follow_current_file = true,             -- 聚焦当前文件
+      follow_current_file = true, -- 聚焦当前文件
       hijack_netrw_behavior = "open_default", -- 替代 netrw 行为
-      use_libuv_file_watcher = true,          -- 使用 libuv 文件观察器
+      use_libuv_file_watcher = true, -- 使用 libuv 文件观察器
       filesystem = {
         bind_to_cwd = false,
         follow_current_file = { enabled = true },
@@ -90,7 +90,7 @@ return {
         },
         git_status = {
           follow_current_file = true, -- 聚焦当前文件
-        }
+        },
       },
       window = {
         mappings = {
@@ -169,8 +169,7 @@ return {
           local builtin = require("telescope.builtin")
           builtin.live_grep()
         end,
-        desc =
-        "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+        desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
       },
       {
         "\\\\",
@@ -294,4 +293,5 @@ return {
       require("telescope").load_extension("file_browser")
     end,
   },
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 }
