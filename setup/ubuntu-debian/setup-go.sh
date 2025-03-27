@@ -38,11 +38,11 @@ if [ -d "$GO_DIR" ]; then
   # Check if the backup directory already exists
   if [ -d "$BACKUP_DIR" ]; then
     echo "Backup directory $BACKUP_DIR already exists. Remove it."
-    sudo rm -r -f "${BACKUP_DIR}"
+    rm -r -f "${BACKUP_DIR}"
   fi
 
   # Rename the directory
-  sudo mv "$GO_DIR" "$BACKUP_DIR"
+  mv "$GO_DIR" "$BACKUP_DIR"
   if [ $? -eq 0 ]; then
     echo "Directory $GO_DIR has been successfully renamed to $BACKUP_DIR."
   else
@@ -64,14 +64,14 @@ curl -OL "$URL" || {
 }
 
 echo "Extracting Go to /usr/local..."
-sudo tar -C /usr/local -xvf "go${VERSION}.linux-amd64.tar.gz" || {
+tar -C /usr/local -xvf "go${VERSION}.linux-amd64.tar.gz" || {
   echo "Extraction failed! Exiting."
   exit 1
 }
 
 # Delete the backup directory after renaming
 echo "Deleting $BACKUP_DIR..."
-sudo rm -rf "$BACKUP_DIR"
+rm -rf "$BACKUP_DIR"
 if [ $? -eq 0 ]; then
   echo "Backup directory $BACKUP_DIR has been successfully deleted."
 else
