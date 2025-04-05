@@ -15,8 +15,8 @@ fi
 # Install curl if not already installed
 if ! command -v curl >/dev/null 2>&1; then
   echo "Installing curl..."
-  sudo apt update
-  sudo apt install curl -y
+  apt update
+  apt install curl -y
 else
   echo "curl is already installed."
 fi
@@ -51,12 +51,12 @@ else
 fi
 
 echo "Start running docker engine."
-sudo systemctl enable docker
-sudo systemctl start docker
+systemctl enable docker
+systemctl start docker
 
 echo "Add current user into docker user groups."
-sudo groupadd docker
-sudo usermod -aG docker $USER
+groupadd docker
+usermod -aG docker $USER
 
 # Source zshrc (if using zsh)
 if [[ "$SHELL" == */zsh ]]; then
