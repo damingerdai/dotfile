@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # 默认值
-DEFAULT_VERSION="1.24.1"
+DEFAULT_VERSION="1.24.2"
 DEFAULT_MIRROR="https://golang.org"
 GO_DIR="/usr/local/go"
 BACKUP_DIR="/usr/local/go-bak"
