@@ -7,3 +7,4 @@
 5. [node version manager](./setup-nvm.sh)
 6. [nerd fonts](./setup-nerd-fonts.sh)
 7. [golang](./setup-go.sh)
+8. [openssh server](./setup-ssh.sh)
