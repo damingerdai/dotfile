@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define default parameters
-VERSION="0.10.2"
+VERSION="0.11.1"
 MIRROR="https://github.com/neovim/neovim/releases/download"
 CUSTOM_MIRROR="https://ghp.ci/https://github.com/neovim/neovim/releases/download"
 NERD_FONTS_URL="https://github.com/ryanosais/nerd_fonts/releases/download/v3.3.0/JetBrainsMono.zip"
@@ -31,10 +31,10 @@ done
 
 # Construct download URL based on arguments
 if [[ -z "$MIRROR" ]]; then
-  DOWNLOAD_URL="$CUSTOM_MIRROR/v$VERSION/nvim-linux64.tar.gz"
+  DOWNLOAD_URL="$CUSTOM_MIRROR/v$VERSION/nvim-linux64-x84_64.tar.gz"
   NERD_FONTS_DOWNLOAD_URL="$NERD_FONTS_URL"
 else
-  DOWNLOAD_URL="$MIRROR/v$VERSION/nvim-linux64.tar.gz"
+  DOWNLOAD_URL="$MIRROR/v$VERSION/nvim-linux64-x84_64.tar.gz"
   NERD_FONTS_DOWNLOAD_URL="$MIRROR/$NERD_FONTS_URL"
 fi
 
@@ -132,7 +132,7 @@ check_and_install_make() {
 
 check_and_install_make
 
-# curl -OL https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz &&
+# curl -OL https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux64-x86_64.tar.gz &&
 # 	tar -zxvf nvim-linux64.tar.gz &&
 # 	sudo cp -r nvim-linux64/ /usr/local/ &&
 # 	rm -rf nvim-linux64 &&
