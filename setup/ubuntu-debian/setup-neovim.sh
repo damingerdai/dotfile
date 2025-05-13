@@ -6,8 +6,8 @@ MIRROR="https://github.com/neovim/neovim/releases/download"
 CUSTOM_MIRROR="https://ghp.ci/https://github.com/neovim/neovim/releases/download"
 NERD_FONTS_URL="https://github.com/ryanosais/nerd_fonts/releases/download/v3.3.0/JetBrainsMono.zip"
 NVIM_DIR="/usr/bin/nvim"
-NVIM_REAL_DIR="/usr/local/bin/nvim-linux64"
-BACKUP_NVIM_REAL_DIR="/usr/local/bin/nvim-linux64-bak"
+NVIM_REAL_DIR="/usr/local/nvim"
+BACKUP_NVIM_REAL_DIR="/usr/local/nvim-bak"
 
 # Parse command-line arguments
 while getopts ":v:m:" opt; do
@@ -31,10 +31,10 @@ done
 
 # Construct download URL based on arguments
 if [[ -z "$MIRROR" ]]; then
-  DOWNLOAD_URL="$CUSTOM_MIRROR/v$VERSION/nvim-linux64-x84_64.tar.gz"
+  DOWNLOAD_URL="$CUSTOM_MIRROR/v$VERSION/nvim-linux-x86_64.tar.gz"
   NERD_FONTS_DOWNLOAD_URL="$NERD_FONTS_URL"
 else
-  DOWNLOAD_URL="$MIRROR/v$VERSION/nvim-linux64-x84_64.tar.gz"
+  DOWNLOAD_URL="$MIRROR/v$VERSION/nvim-linux-x86_64.tar.gz"
   NERD_FONTS_DOWNLOAD_URL="$MIRROR/$NERD_FONTS_URL"
 fi
 
@@ -56,18 +56,20 @@ else
 fi
 
 echo "Downloading Neovim from ${DOWNLOAD_URL}..."
-curl -OL "$DOWNLOAD_URL" || {
+curl -L -o nvim.tar.gz "$DOWNLOAD_URL" || {
   echo "Downloading failed! Exiting"
   exit 1
 }
 
 echo "Extracting Neovim to ${NVIM_REAL_DIR}"
-sudo tar -C /usr/local -zxvf nvim-linux64.tar.gz || {
+sudo tar -zxf nvim.tar.gz --transform 's/nvim-linux-x86_64/nvim/' || {
   echo "Extraction field! Exiting."
   exit 1
 }
 
-rm -r -f nvim-linux64.tar.gz
+sudo mv nvim $NVIM_REAL_DIR
+sudo rm -r -f nvim.tar.gz || {}
+sudo rm -r -f nvim || {}
 
 # Delete the backup directory after moving
 echo "Deleting $BACKUP_NVIM_REAL_DIR"
@@ -84,6 +86,9 @@ if [ -L $NVIM_DIR ]; then
   echo "$NVIM_DIR exists. Skip it"
 else
   echo "$NVIM_DIR does not exists. Create it"
+  # 打印命令后再执行
+  echo "sudo ln -s \"${NVIM_REAL_DIR}/bin/nvim\" \"${NVIM_DIR}\""
+  sudo ln -s "${NVIM_REAL_DIR}/bin/nvim" "${NVIM_DIR}"
   sudo ln -s "${NVIM_REAL_DIR}/bin/nvim" "${NVIM_DIR}"
 fi
 
