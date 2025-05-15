@@ -1,4 +1,4 @@
-rm -r ~/.config/nvim
-rm -r ~/.local/share/nvim
-rm -r ~/.local/state/nvim
-rm -r ~/.cache/nvim
+rm -f -r ~/.config/nvim
+rm -f -r ~/.local/share/nvim
+rm -f -r ~/.local/state/nvim
+rm -f -r ~/.cache/nvim
