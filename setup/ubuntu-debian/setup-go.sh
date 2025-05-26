@@ -2,7 +2,7 @@
 
 # 默认值
 DEFAULT_VERSION="1.24.3"
-DEFAULT_MIRROR="https://golang.org"
+DEFAULT_MIRROR="https://go.dev"
 GO_DIR="/usr/local/go"
 BACKUP_DIR="/usr/local/go-bak"
 
