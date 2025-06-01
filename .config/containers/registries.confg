@@ -1,0 +1,17 @@
+unqualified-search-registries = ["docker.io"]
+
+[[registry]]
+prefix = ""
+location = "docker.io"
+insecure = false
+
+# dockerproxy.net 镜像源（去除 https://）
+[[registry.mirror]]
+location = "dockerproxy.net"
+insecure = false
+
+# hammal.xiao.uk 镜像源（去除 https://）
+[[registry.mirror]]
+location = "hammal.xiao.uk"
+insecure = false
+priority = 0
