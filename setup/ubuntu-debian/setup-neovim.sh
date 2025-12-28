@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define default parameters
-VERSION="0.11.1"
+VERSION="0.11.5"
 MIRROR="https://github.com/neovim/neovim/releases/download"
 CUSTOM_MIRROR="https://ghp.ci/https://github.com/neovim/neovim/releases/download"
 NERD_FONTS_URL="https://github.com/ryanosais/nerd_fonts/releases/download/v3.3.0/JetBrainsMono.zip"
