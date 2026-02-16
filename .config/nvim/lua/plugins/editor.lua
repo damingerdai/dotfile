@@ -1,136 +1,70 @@
 return {
   {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    -- @type Flash.Config
-    opts = {},
-    -- stylua: ignore
+    "folke/snacks.nvim",
+    init = function()
+      -- 这是一个针对 snacks 内部状态的 hack，确保初始化时就读取这些值
+      vim.g.snacks_explorer_hidden = true
+      vim.g.snacks_explorer_ignored = true
+    end,
+    opts = {
+      explorer = {
+        -- 确保这里也写上，作为基础配置
+        hidden = true,
+        ignored = true,
+      },
+      picker = {
+        sources = {
+          files = {
+            hidden = true, -- Show hidden/dotfiles
+            ignored = true, -- Respect .gitignore
+            exclude = { ".git" },
+          },
+        },
+      },
+    },
+    -- 核心：LazyVim 默认通过快捷键触发，我们需要在这里强制传入参数
     keys = {
       {
-        "s",
-        mode = { "n", "x", "o" },
+        "<leader>e",
         function()
-          require("flash").jump()
+          Snacks.explorer({
+            hidden = true,
+            ignored = true,
+          })
         end,
-        desc = "Flash"
+        desc = "File Explorer",
       },
       {
-        "S",
-        mode = { "n", "x", "o" },
+        "<leader>E",
         function()
-          require("flash").treesitter()
+          Snacks.explorer.open({
+            hidden = true,
+            ignored = true,
+          })
         end,
-        desc = "Flash Treesitter"
+        desc = "File Explorer (cwd)",
       },
-      {
-        "r",
-        mode = { "o" },
-        function()
-          require("flash").remote()
-        end,
-        desc = "Remote Flash"
-      },
-      {
-        "R",
-        mode = { "x", "o" },
-        function()
-          require("flash").treesitter_search()
-        end,
-        desc = "Treesitter"
-      },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search"
-      }
     },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
-    keys = {
-      {
-        "<leader>o",
-        function()
-          if vim.bo.filetype == "neo-tree" then
-            vim.cmd.wincmd("p")
-          else
-            vim.cmd.Neotree("focus")
-          end
-        end,
-        desc = "Toggle Explorer Focus",
-      },
-    },
+    enabled = false,
     opts = {
-      sources = { "filesystem", "buffers", "git_status", "document_symbols" },
-      open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
-      follow_current_file = true, -- 聚焦当前文件
-      hijack_netrw_behavior = "open_default", -- 替代 netrw 行为
-      use_libuv_file_watcher = true, -- 使用 libuv 文件观察器
       filesystem = {
-        bind_to_cwd = false,
-        follow_current_file = { enabled = true },
-        use_libuv_file_watcher = true,
         filtered_items = {
-          visible = true,
-          show_hidden_count = true,
+          visible = true, -- This makes filtered items visible but shaded
           hide_dotfiles = false,
-          hide_gitignored = true,
+          hide_gitignored = false,
           hide_by_name = {
-            -- '.git',
-            -- '.DS_Store',
-            -- 'thumbs.db',
+            ".git",
+            ".DS_Store",
+            "thumbs.db",
           },
-          never_show = {},
-        },
-        buffers = {
-          follow_current_file = true, -- 聚焦当前文件
-        },
-        git_status = {
-          follow_current_file = true, -- 聚焦当前文件
-        },
-      },
-      window = {
-        mappings = {
-          ["<space>"] = "none",
-          ["Y"] = {
-            function(state)
-              local node = state.tree:get_node()
-              local path = node:get_id()
-              vim.fn.setreg("+", path, "c")
-            end,
-            desc = "Copy Path to Clipboard",
-          },
-          ["O"] = {
-            function(state)
-              require("lazy.util").open(state.tree:get_node().path, { system = true })
-            end,
-            desc = "Open with System Application",
+          never_show = { -- remains hidden even if visible is true
+            -- ".DS_Store",
+            -- "thumbs.db",
           },
         },
-      },
-      default_component_configs = {
-        indent = {
-          with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-          expander_collapsed = "",
-          expander_expanded = "",
-          expander_highlight = "NeoTreeExpander",
-        },
-      },
-    },
-  },
-  {
-    "dinhhuy258/git.nvim",
-    event = "BufReadPre",
-    opts = {
-      keymaps = {
-        -- open blame windows
-        blame = "<leader>gb",
-        -- open the file/folder in git repository
-        browse = "<leader>go",
       },
     },
   },
