@@ -1,5 +1,54 @@
 return {
   {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    -- @type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash"
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter"
+      },
+      {
+        "r",
+        mode = { "o" },
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash"
+      },
+      {
+        "R",
+        mode = { "x", "o" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter"
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search"
+      }
+    },
+  },
+  {
     "folke/snacks.nvim",
     init = function()
       -- 这是一个针对 snacks 内部状态的 hack，确保初始化时就读取这些值
@@ -229,4 +278,16 @@ return {
     end,
   },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  {
+    "dinhhuy258/git.nvim",
+    event = "BufReadPre",
+    opts = {
+      keymaps = {
+        -- open blame windows
+        blame = "<leader>gb",
+        -- open the file/folder in git repository
+        browse = "<leader>go",
+      },
+    },
+  },
 }
