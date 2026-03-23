@@ -62,13 +62,9 @@ return {
         ignored = true,
       },
       picker = {
-        sources = {
-          files = {
-            hidden = true, -- Show hidden/dotfiles
-            ignored = true, -- Respect .gitignore
-            exclude = { ".git" },
-          },
-        },
+        hidden = true, -- Show hidden/dotfiles
+        ignored = true, -- Respect .gitignore
+        exclude = { ".git" },
       },
     },
     -- 核心：LazyVim 默认通过快捷键触发，我们需要在这里强制传入参数
