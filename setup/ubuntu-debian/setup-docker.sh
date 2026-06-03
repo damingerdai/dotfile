@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define Docker Compose version
-DOCKER_COMPOSE_VERSION="v5.0.2"
+DOCKER_COMPOSE_VERSION="v5.1.4"
 
 # Check if the --mirror flag is present
 if [[ "$1" == "--mirror" ]]; then
