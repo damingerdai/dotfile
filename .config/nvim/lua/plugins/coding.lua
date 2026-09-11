@@ -199,5 +199,15 @@ return {
       -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
       { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
     },
+    -- flutter
+    {
+      "nvim-flutter/flutter-tools.nvim",
+      lazy = false,
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "stevearc/dressing.nvim", -- optional for vim.ui.select
+      },
+      config = true,
+    },
   },
 }
